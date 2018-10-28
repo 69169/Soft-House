@@ -22,3 +22,10 @@
 	position: relative;
 	z-index: 2;
 }
+.link-no-deco{
+	text-decoration: none;
+	color: black;
+}
+.popular-download-table:hover{
+	background-color: #78C74D;
+}
