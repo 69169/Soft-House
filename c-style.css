@@ -1,10 +1,11 @@
 /* CSS Document */
 .h-top{
+	margin: 0px;
 	position: fixed;
 	z-index: 1;
 	width: 100%;
 	height: 500px;
-	background-image: url(data-center.jpg);
+	background-image: url(pics/data-center.jpg);
 	background-position: center;
 }
 .h-top-heading{
@@ -12,7 +13,12 @@
 	color: #ffffff;
 	text-align: center;
 	vertical-align: middle;
-	line-height: 500px;
+	line-height: 492px;
+	position: relative;
+	z-index: 2;
+}
+.main-container{
+	background-color: white;
 	position: relative;
 	z-index: 2;
 }
