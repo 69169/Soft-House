@@ -29,3 +29,9 @@
 .popular-download-table:hover{
 	background-color: #78C74D;
 }
+.sl-p-caption{
+	font-size: 1vw;
+}
+.sl-h-caption{
+	font-size: 2vw;
+}
