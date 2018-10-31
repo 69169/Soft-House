@@ -1,12 +1,13 @@
 <?php
 
 require('connect.php');
-$t1Name = "downloadList";
-$table1Col2 = "softName";
-$table1Col3 = "softLink";
+$t1Name = "download-list";
+$table1Col2 = "SoftName";
+$table1Col3 = "SoftLink";
 $table1Col4 = "SoftImgLink";
-$table1Col5 = "softCategory";
+$table1Col5 = "Category";
 $t2Name = "categories";
+$table2Col2 = "CatName";
 // Create connection
 $conn = new mysqli($servername, $username, $password, $db);
 
@@ -18,20 +19,37 @@ echo "Connected successfully<br/>";
 
 //insert data function
 function insertData($softName,$softLink,$SoftImgLink,$softCategory) {
-    $sql_insert = "INSERT INTO `$t1Name` (`$table1Col2`, `$table1Col3`, `$table1Col4`, `$table1Col5`) VALUES ('$softName', '$softLink', '$SoftImgLink', '$softCategory')";
+	
+  	global $conn;
+  	global $t1Name;
+  	global $table1Col2;
+  	global $table1Col3;
+  	global $table1Col4;
+  	global $table1Col5;
+  	global $db;
+  
+    $sql = "INSERT INTO `$db`.`$t1Name` (`ID`, `$table1Col2`, `$table1Col3`, `$table1Col4`, `$table1Col5`) VALUES (NULL, '$softName', '$softLink', '$SoftImgLink', '$softCategory')";
 
-	if ($conn->query($sql_insert) === TRUE) {
-		echo "Inserted Successfully";
+	if ($conn->query($sql) === TRUE) {
+    	echo "Data Added Successfully";
 	} else {
-		echo "Error: " . $sql_insert . "<br>" . $conn->error;
+    	echo "Error: " . $sql . "<br>" . $conn->error;
 	}
 
 	$conn->close();
 }
 
+//insertData("Mozila","mozi.com","mozi.img.com","Browser");
+
 //delete data function
 function deleteData($delSoftName){
-	$sql_del = "DELETE FROM $t1Name WHERE $table1Col2 = $delSoftName";
+	
+  	global $conn;
+  	global $t1Name;
+  	global $table1Col2;
+  	global $db;
+	
+	$sql_del = "DELETE FROM '$db'.'$t1Name' WHERE '$table1Col2' = '$delSoftName'";
 
 	if ($conn->query($sql_del) === TRUE) {
 		echo "Data Deleted Successfully";
@@ -43,18 +61,57 @@ function deleteData($delSoftName){
 }
 
 function selectData(){
-	$sql_select = "SELECT id, firstname, lastname FROM MyGuests";
-	$result = $conn->query($sql_select);
+	
+	global $conn;
+  	global $t2Name;
+  	global $db;
+	global $table2Col2;
+	
+	$sql_select_cat = "SELECT * FROM `$t2Name` WHERE 1";
+	$result = $conn->query($sql_select_cat);
 
 	if ($result->num_rows > 0) {
 		// output data of each row
 		while($row = $result->fetch_assoc()) {
-			echo "id: " . $row["id"]. " - Name: " . $row["firstname"]. " " . $row["lastname"]. "<br>";
+			selectDataHelper($row["$table2Col2"]);
 		}
 	} else {
-		echo "0 results";
+		echo "No Data Found!";
 	}
 	$conn->close();
 }
+
+selectData();
+
+function selectDataHelper($mCategories){
+  
+	global $conn;
+  	global $t1Name;
+  	global $db;
+	global $table1Col2;
+	global $table1Col3;
+	global $table1Col4;
+	global $table1Col5;
+	
+	$sql_select_cat = "SELECT * FROM `$t1Name` WHERE `$table1Col5` = '$mCategories'";
+  
+	$result = $conn->query($sql_select_cat);
+
+	if ($result->num_rows > 0) {
+		// output data of each row
+		while($row = $result->fetch_assoc()) {
+			echo $row["$table1Col2"];
+			echo("<br>");
+			echo $row["$table1Col3"];
+			echo("<br>");
+			echo $row["$table1Col4"];
+			echo("<br>");
+		}
+	} else {
+		echo "<br>No Data Found<br>";
+	}
+}
+
+//SELECT * FROM `download-list` WHERE `Category`  = 'Browser'
 
 ?>
