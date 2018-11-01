@@ -2,12 +2,10 @@
 body{
     margin: 0;
     padding: 0;
-    background-image: url(pics/bg-full.jpg);
+    background-image: url(pics/bg-img.png);
     font-family: sans-serif;
-	background-repeat: no-repeat;
-	background-size: cover;
-
-   
+	background-size: 100% auto;
+	background-color: #3A0BD8;
 }
 .login-box{
     width: 320px;

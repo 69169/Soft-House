@@ -101,9 +101,10 @@ function selectDataHelper($mCategories){
       
       //echo "total num of rows $result->num_rows";
 		
+		//making heading of category
 		echo('<br><h1 style="width: 100%; color: #fff; border-bottom: double #fff; font-size: 45px; border-bottom-width: thick;">'.$mCategories.'</h1>');
       
-      for($i = 0; $i < $result->num_rows/4; $i++){
+      	for($i = 0; $i < $result->num_rows/4; $i++){
 		  
 		  	$row_1 = $result->fetch_assoc();
 			$s_Name_1 = $row_1["$table1Col2"];
@@ -124,8 +125,6 @@ function selectDataHelper($mCategories){
 			$s_Name_4 = $row_4["$table1Col2"];
 			$s_link_4 = $row_4["$table1Col3"];
 			$s_img_link_4 = $row_4["$table1Col4"];
-		  
-//		  echo ($s_img_link_1. 'this is link');
 		  
 		  if (empty($s_Name_2)) {
 			  
