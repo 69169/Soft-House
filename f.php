@@ -98,15 +98,37 @@ function selectDataHelper($mCategories){
 	$result = $conn->query($sql_select_cat);
 
 	if ($result->num_rows > 0) {
-		// output data of each row
-		while($row = $result->fetch_assoc()) {
-			echo $row["$table1Col2"];
+      
+      echo "total num of rows $result->num_rows";
+      
+      for($i = 0; $i < $result->num_rows/2; $i++){
+				echo "<br>for counter is : $i<br>";
+        $row = $result->fetch_assoc();
+        echo $row["$table1Col2"];
 			echo("<br>");
 			echo $row["$table1Col3"];
 			echo("<br>");
 			echo $row["$table1Col4"];
 			echo("<br>");
-		}
+        $row = $result->fetch_assoc();
+        echo $row["$table1Col2"];
+			echo("<br>");
+			echo $row["$table1Col3"];
+			echo("<br>");
+			echo $row["$table1Col4"];
+			echo("<br>");
+			}
+      
+		// output data of each row
+		//while($row = $result->fetch_assoc()) {
+          
+			//echo $row["$table1Col2"];
+			//echo("<br>");
+			//echo $row["$table1Col3"];
+			//echo("<br>");
+			//echo $row["$table1Col4"];
+			//echo("<br>");
+		//}
 	} else {
 		echo "<br>No Data Found<br>";
 	}
