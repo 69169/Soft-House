@@ -100,6 +100,8 @@ function selectDataHelper($mCategories){
 	if ($result->num_rows > 0) {
       
       //echo "total num of rows $result->num_rows";
+		
+		echo('<br><h1 style="width: 100%; color: #fff; border-bottom: double #fff; font-size: 45px; border-bottom-width: thick;">'.$mCategories.'</h1>');
       
       for($i = 0; $i < $result->num_rows/4; $i++){
 		  
@@ -128,31 +130,24 @@ function selectDataHelper($mCategories){
 		  if (empty($s_Name_2)) {
 			  
 			  echo ('
-			  
-			  <br>
-			<div class="card-deck">
+			  	<br>
+				<div class="card-deck">
 				  
-				<div class="card">
-					<img class="card-img-top" src="'.$s_img_link_1.'" alt="Card image" style="width:100%">
-					<div class="card-body">
-						  <h4 class="card-title">'.$s_Name_1.'</h4>
-						  <a href="'.$s_link_1.'" class="btn btn-primary">Download</a>
+					<div class="card">
+						<img class="card-img-top" src="'.$s_img_link_1.'" alt="Card image" style="width:100%">
+						<div class="card-body">
+							  <h4 class="card-title">'.$s_Name_1.'</h4>
+							  <a href="'.$s_link_1.'" class="btn btn-primary">Download</a>
+						</div>
 					</div>
-  				</div>
-				
-				<div class="card" style="visibility:hidden;">
-					
-  				</div>
-				
-				<div class="card" style="visibility:hidden;">
-					
-  				</div>
-				
-				<div class="card" style="visibility:hidden;">
-					
-  				</div>
+
+					<div class="card" style="visibility:hidden;"></div>
+
+					<div class="card" style="visibility:hidden;"></div>
+
+					<div class="card" style="visibility:hidden;"></div>
 			
-			</div>
+				</div>
 			');
 			  
 		  }elseif(empty($s_Name_3)){
@@ -179,13 +174,9 @@ function selectDataHelper($mCategories){
 					</div>
   				</div>
 				
-				<div class="card" style="visibility:hidden;">
-					
-  				</div>
+				<div class="card" style="visibility:hidden;"></div>
 				
-				<div class="card" style="visibility:hidden;">
-					
-  				</div>
+				<div class="card" style="visibility:hidden;"></div>
 			
 			</div>
 			');
@@ -266,7 +257,6 @@ function selectDataHelper($mCategories){
 						  <a href="'.$s_link_4.'" class="btn btn-primary">Download</a>
 					</div>
   				</div>
-			
 			</div>
 			');
 		  }
