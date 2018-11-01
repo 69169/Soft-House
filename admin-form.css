@@ -2,11 +2,10 @@
 body{
     margin: 0;
     padding: 0;
-    background-image: url(pics/bg.jpg);
-    background-size: cover;
-    background-position: center;
+/*    background-image: url(pics/bg-full.jpg);*/
     font-family: sans-serif;
-	background-repeat: no-repeat;
+/*	background-repeat: no-repeat;*/
+   
 }
 .login-box{
     width: 320px;
@@ -66,7 +65,7 @@ h1{
 .login-box input[type="submit"]:hover
 {
     cursor: pointer;
-    background: #454444;
+    background: #DCDCDC;
     color: #000;
 }
 
@@ -79,4 +78,3 @@ h1{
 {
     color: #4A4A4B;
 }
-
