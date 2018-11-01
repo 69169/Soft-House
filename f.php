@@ -15,7 +15,7 @@ $conn = new mysqli($servername, $username, $password, $db);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 } 
-echo "Connected successfully<br/>";
+//echo "Connected successfully<br/>";
 
 //insert data function
 function insertData($softName,$softLink,$SoftImgLink,$softCategory) {
@@ -101,7 +101,7 @@ function selectDataHelper($mCategories){
       
       //echo "total num of rows $result->num_rows";
       
-      for($i = 0; $i < $result->num_rows/2; $i++){
+      for($i = 0; $i < $result->num_rows/4; $i++){
 		  
 		  	$row_1 = $result->fetch_assoc();
 			$s_Name_1 = $row_1["$table1Col2"];
@@ -113,11 +113,22 @@ function selectDataHelper($mCategories){
 			$s_link_2 = $row_2["$table1Col3"];
 			$s_img_link_2 = $row_2["$table1Col4"];
 		  
+		  	$row_3 = $result->fetch_assoc();
+			$s_Name_3 = $row_3["$table1Col2"];
+			$s_link_3 = $row_3["$table1Col3"];
+			$s_img_link_3 = $row_3["$table1Col4"];
+		  
+		  	$row_4 = $result->fetch_assoc();
+			$s_Name_4 = $row_4["$table1Col2"];
+			$s_link_4 = $row_4["$table1Col3"];
+			$s_img_link_4 = $row_4["$table1Col4"];
+		  
 //		  echo ($s_img_link_1. 'this is link');
 		  
 		  if (empty($s_Name_2)) {
 			  
 			  echo ('
+			  
 			  <br>
 			<div class="card-deck">
 				  
@@ -125,24 +136,35 @@ function selectDataHelper($mCategories){
 					<img class="card-img-top" src="'.$s_img_link_1.'" alt="Card image" style="width:100%">
 					<div class="card-body">
 						  <h4 class="card-title">'.$s_Name_1.'</h4>
-						  <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
 						  <a href="'.$s_link_1.'" class="btn btn-primary">Download</a>
 					</div>
+  				</div>
+				
+				<div class="card" style="visibility:hidden;">
+					
+  				</div>
+				
+				<div class="card" style="visibility:hidden;">
+					
+  				</div>
+				
+				<div class="card" style="visibility:hidden;">
+					
   				</div>
 			
 			</div>
 			');
 			  
-		  }else{
+		  }elseif(empty($s_Name_3)){
 			  
 			  echo ('
 			  <br>
-			<div class="card-deck">
+			  <div class="card-deck">
 				  
 				<div class="card">
 					<img class="card-img-top" src="'.$s_img_link_1.'" alt="Card image" style="width:100%">
 					<div class="card-body">
-						  <h4 class="card-title">'.$s_Name_1.'</h4>
+						  <h4 class="card-title" style="white-space: nowrap;">'.$s_Name_1.'</h4>
 						  <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
 						  <a href="'.$s_link_1.'" class="btn btn-primary">Download</a>
 					</div>
@@ -151,36 +173,109 @@ function selectDataHelper($mCategories){
 				<div class="card">
 					<img class="card-img-top" src="'.$s_img_link_2.'" alt="Card image" style="width:100%">
 					<div class="card-body">
-						  <h4 class="card-title">'.$s_Name_2.'</h4>
+						  <h4 class="card-title" style="white-space: nowrap;">'.$s_Name_2.'</h4>
 						  <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
 						  <a href="'.$s_link_2.'" class="btn btn-primary">Download</a>
 					</div>
+  				</div>
+				
+				<div class="card" style="visibility:hidden;">
+					
+  				</div>
+				
+				<div class="card" style="visibility:hidden;">
+					
   				</div>
 			
 			</div>
 			');
 			  
-		  }
-		  
+		  }elseif(empty($s_Name_4)){
+			  
+			  echo ('
+			  <br>
+			  <div class="card-deck">
+				  
+				<div class="card">
+					<img class="card-img-top" src="'.$s_img_link_1.'" alt="Card image" style="width:100%">
+					<div class="card-body">
+						  <h4 class="card-title" style="white-space: nowrap;">'.$s_Name_1.'</h4>
+						  <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
+						  <a href="'.$s_link_1.'" class="btn btn-primary">Download</a>
+					</div>
+  				</div>
+				
+				<div class="card">
+					<img class="card-img-top" src="'.$s_img_link_2.'" alt="Card image" style="width:100%">
+					<div class="card-body">
+						  <h4 class="card-title" style="white-space: nowrap;">'.$s_Name_2.'</h4>
+						  <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
+						  <a href="'.$s_link_2.'" class="btn btn-primary">Download</a>
+					</div>
+  				</div>
+				
+				<div class="card">
+					<img class="card-img-top" src="'.$s_img_link_3.'" alt="Card image" style="width:100%">
+					<div class="card-body">
+						  <h4 class="card-title" style="white-space: nowrap;">'.$s_Name_3.'</h4>
+						  <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
+						  <a href="'.$s_link_3.'" class="btn btn-primary">Download</a>
+					</div>
+  				</div>
+				
+			</div>
+			');
+			  
+		  }else{
+			  echo ('
+			  <br>
+			  <div class="card-deck">
+				  
+				<div class="card">
+					<img class="card-img-top" src="'.$s_img_link_1.'" alt="Card image" style="width:100%">
+					<div class="card-body">
+						  <h4 class="card-title" style="white-space: nowrap;">'.$s_Name_1.'</h4>
+						  <p class="card-text">Some example text</p>
+						  <a href="'.$s_link_1.'" class="btn btn-primary">Download</a>
+					</div>
+  				</div>
+				
+				<div class="card">
+					<img class="card-img-top" src="'.$s_img_link_2.'" alt="Card image" style="width:100%">
+					<div class="card-body">
+						  <h4 class="card-title" style="white-space: nowrap;">'.$s_Name_2.'</h4>
+						  <p class="card-text">Some example text</p>
+						  <a href="'.$s_link_2.'" class="btn btn-primary">Download</a>
+					</div>
+  				</div>
+				
+				<div class="card">
+					<img class="card-img-top" src="'.$s_img_link_3.'" alt="Card image" style="width:100%">
+					<div class="card-body">
+						  <h4 class="card-title" style="white-space: nowrap;">'.$s_Name_3.'</h4>
+						  <p class="card-text">Some example text</p>
+						  <a href="'.$s_link_3.'" class="btn btn-primary">Download</a>
+					</div>
+  				</div>
+				
+				<div class="card">
+					<img class="card-img-top" src="'.$s_img_link_4.'" alt="Card image" style="width:100%">
+					<div class="card-body">
+						  <h4 class="card-title" style="white-space: nowrap;">'.$s_Name_4.'</h4>
+						  <p class="card-text">Some example text</p>
+						  <a href="'.$s_link_4.'" class="btn btn-primary">Download</a>
+					</div>
+  				</div>
 			
+			</div>
+			');
+		  }
 		  
 		}
 
-		// output data of each row
-		//while($row = $result->fetch_assoc()) {
-          
-			//echo $row["$table1Col2"];
-			//echo("<br>");
-			//echo $row["$table1Col3"];
-			//echo("<br>");
-			//echo $row["$table1Col4"];
-			//echo("<br>");
-		//}
 	} else {
-		echo "<br>No Data Found<br>";
+		//echo "<br>No Data Found<br>";
 	}
 }
-
-//SELECT * FROM `download-list` WHERE `Category`  = 'Browser'
 
 ?>

@@ -31,7 +31,7 @@
 	</nav>
 	 <div class="container-fluid bg-danger">
 		 <div class="row" style="height: auto;">
-			 <div class="col-sm-9 bg-info">
+			 <div class="col-sm-9 bg-info" style="padding: 10px 60px;">
 				  <?php require('f.php'); selectData(); ?>
 			 </div>
 			 <div class="col-sm-3 bg-warning">
