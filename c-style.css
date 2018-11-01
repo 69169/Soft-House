@@ -45,18 +45,3 @@ html{
 	width: 100%;
 	margin: 20px 0px;
 }
-body{
-	margin: 0px;
-	padding: 0px;
-	background: url(pics/bg.jpg);
-	background-size: cover;
-	background-position: center;
-	font-family: "Gill Sans", "Gill Sans MT", "Myriad Pro", "DejaVu Sans Condensed", Helvetica, Arial, "sans-serif";
-}
-.log-in-Box{
-	width: 100%;
-	height: auto;
-	background: rbga(0,0,0,0.5);
-	
-	
-}
