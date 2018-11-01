@@ -103,43 +103,67 @@ function selectDataHelper($mCategories){
       
       for($i = 0; $i < $result->num_rows/2; $i++){
 		  
-		  	$row = $result->fetch_assoc();
-			$s_Name_1 = $row["$table1Col2"];
-			$s_link_1 = $row["$table1Col3"];
-			$s_img_link_1 = $row["$table1Col4"];
+		  	$row_1 = $result->fetch_assoc();
+			$s_Name_1 = $row_1["$table1Col2"];
+			$s_link_1 = $row_1["$table1Col3"];
+			$s_img_link_1 = $row_1["$table1Col4"];
 		  
-			echo ('
+		  	$row_2 = $result->fetch_assoc();
+			$s_Name_2 = $row_2["$table1Col2"];
+			$s_link_2 = $row_2["$table1Col3"];
+			$s_img_link_2 = $row_2["$table1Col4"];
+		  
+//		  echo ($s_img_link_1. 'this is link');
+		  
+		  if (empty($s_Name_2)) {
+			  
+			  echo ('
+			  <br>
 			<div class="card-deck">
 				  
 				<div class="card">
 					<img class="card-img-top" src="'.$s_img_link_1.'" alt="Card image" style="width:100%">
 					<div class="card-body">
-						  <h4 class="card-title">John Doe</h4>
+						  <h4 class="card-title">'.$s_Name_1.'</h4>
 						  <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
-						  <a href="#" class="btn btn-primary">See Profile</a>
-					</div>
-  				</div>
-				
-				<div class="card">
-					<img class="card-img-top" src="img_avatar1.png" alt="Card image" style="width:100%">
-					<div class="card-body">
-						  <h4 class="card-title">John Doe</h4>
-						  <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
-						  <a href="#" class="btn btn-primary">See Profile</a>
+						  <a href="'.$s_link_1.'" class="btn btn-primary">Download</a>
 					</div>
   				</div>
 			
 			</div>
 			');
+			  
+		  }else{
+			  
+			  echo ('
+			  <br>
+			<div class="card-deck">
+				  
+				<div class="card">
+					<img class="card-img-top" src="'.$s_img_link_1.'" alt="Card image" style="width:100%">
+					<div class="card-body">
+						  <h4 class="card-title">'.$s_Name_1.'</h4>
+						  <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
+						  <a href="'.$s_link_1.'" class="btn btn-primary">Download</a>
+					</div>
+  				</div>
+				
+				<div class="card">
+					<img class="card-img-top" src="'.$s_img_link_2.'" alt="Card image" style="width:100%">
+					<div class="card-body">
+						  <h4 class="card-title">'.$s_Name_2.'</h4>
+						  <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
+						  <a href="'.$s_link_2.'" class="btn btn-primary">Download</a>
+					</div>
+  				</div>
+			
+			</div>
+			');
+			  
+		  }
 		  
-		
-		  	$row = $result->fetch_assoc();
-			echo $row["$table1Col2"];
-			echo("<br>");
-			echo $row["$table1Col3"];
-			echo("<br>");
-			echo $row["$table1Col4"];
-			echo("<br>");
+			
+		  
 		}
 
 		// output data of each row
