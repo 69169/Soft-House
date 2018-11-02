@@ -14,3 +14,7 @@ https://wpmakesite.com/wordpress-hosting/top-free-web-hosting/
 
 ALL HOSTS BUT NOT REALLY
 https://www.webhostingsecretrevealed.net/blog/web-hosting-guides/free-hosting-sites/
+
+
+login session 
+https://www.johnmorrisonline.com/build-php-login-form-using-sessions/
