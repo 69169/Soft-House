@@ -1,12 +1,4 @@
 /* CSS Document */
-body{
-    margin: 0;
-    padding: 0;
-    background-image: url(pics/bg-img.png);
-    font-family: sans-serif;
-	background-size: 100% auto;
-	background-color: #3A0BD8;
-}
 .login-box{
     width: 320px;
     height: 420px;

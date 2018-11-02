@@ -1,13 +1,4 @@
 /*side nave*/
-body{
-    margin: 0;
-    padding: 0;
-    background-image: url(pics/bg.jpg);
-    font-family: sans-serif;
-	background-size: 100% auto;
-	background-color: #3A0BD8;
-}
-
 #mySidenav{
 	position: fixed;
 	top: 50%;
