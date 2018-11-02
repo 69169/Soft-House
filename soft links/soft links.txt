@@ -42,3 +42,28 @@ http://prdl-download.adobe.com/Dreamweaver/0D145873957D4FEF849999B43723DA1E/1509
 https://dl1.filehippo.com/6bef06ba23b44f5d8f0e6513474010d8/vlc-3.0.4-win64.exe?ttl=1540812197&token=0f15f8481d072b7a425d6784ed02d2c7
 
 [vlc media donwload links] VALID FOR NOW
+
+
+
+https://gsf-fl.softonic.com/327/cd9/6ec0044b01f3d7397873b8a86883c27dbd/vlc-3.0.3-win64.exe?Expires=1540852679&Signature=40dc1adc312a64ee2d90edbe3ff7feb985d50794&SD_used=&channel=WEB&fdh=no&id_file=c78b1e6e-96bf-11e6-9f04-00163ed833e7&instance=softonic_en&type=PROGRAM&url=https://vlc-media-player.en.softonic.com&Filename=vlc-3.0.3-win64.exe
+
+[vlc]
+
+https://net.geo.opera.com/opera/stable/windows?http_referrer=https://www.google.com.pk/&utm_source=google_ads_via_opera_com&utm_medium=ba_ose&utm_campaign=_00%20-%20WW%20-%20Search%20-%20EN%20-%20Branded_via_opera_com_https&utm_content=google%20cpc&utm_id=gclid_EAIaIQobChMIy-e28umr3gIVw-F3Ch1POwmkEAAYASAAEgLTVfD_BwE&utm_lastpage=opera.com/&dl_token=72840590
+
+[opera]
+
+
+https://download-new.utorrent.com/endpoint/utweb/track/beta/os/win
+
+[utorrent]
+
+
+https://www.7-zip.org/a/7z1805-x64.exe
+
+[7 zip]
+
+
+https://download.microsoft.com/download/0/5/C/05C1EC0E-D5EE-463B-BFE3-9311376A6809/NDP472-KB4054531-Web.exe
+
+[net farmwork]
