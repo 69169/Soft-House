@@ -46,10 +46,53 @@
 	<div id="mySidenav" style="display: none">
 		<a href="#" id="side-menu-item-1">Add Card</a>
 		<a href="#" id="side-menu-item-2">Edit Card</a>
-		<a href="#" id="side-menu-item-3">Delet Card</a>
-		<a href="#" id="side-menu-item-4">Hide Card</a>
+		<a href="#" id="side-menu-item-3">Delete Card</a>
+		<a href="#" id="side-menu-item-4">Add Category</a>
 		<a href="?logout=true" id="side-menu-item-5">Logout</a>
 	</div>
+	
+<!--	add card start-->
+	
+	<style>
+		.text-white{
+			font-size: 2vw;
+		}
+	</style>
+	
+	<div style="width: 80%; max-width: 500px; margin-top: 5%; display: none;" class="container" id="addCard">
+		
+		<form action="" method="post" class="add-card-input">
+			<div class="form-group">
+				<label for="selectCat" class="text-white">Select Category</label>
+				<select class="form-control">
+					<?php require('f.php'); echo selectOption(); ?>
+				</select>
+			</div>
+			
+			<div class="form-group">
+				<label for="soft-name" class="text-white">Software Name</label>
+				<input class="form-control add-card-input" id="soft-name" type="text" placeholder="Enter Software Name">
+			</div>
+			<div class="form-group">
+				<label for="c-img-link" class="text-white">Card Image Link</label>
+				<input class="form-control add-card-input" id="c-img-link" type="url" placeholder="Enter Image URL">
+			</div>
+			<div class="form-group">
+				<label for="download-link" class="text-white">Download Link</label>
+				<input class="form-control add-card-input" id="download-link" type="url" placeholder="Enter Download Link">
+			</div>
+			<input type="submit" name="submit" value="Add Card" class="btn btn-danger btn-lg">
+		</form>
+		
+	</div>
+
+<!--	add card end-->
+	
+	<script>
+		$('#side-menu-item-1').click(function(){
+			$('#addCard').css("display", "");
+		});
+	</script>
 	
 <!--	body element end-->
 </body>

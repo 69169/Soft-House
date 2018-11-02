@@ -267,4 +267,26 @@ function selectDataHelper($mCategories){
 	}
 }
 
+function selectOption(){
+	$str = "";
+	global $conn;
+  	global $t2Name;
+  	global $db;
+	global $table2Col2;
+	
+	$sql_select_cat = "SELECT * FROM `$t2Name` WHERE 1";
+	$result = $conn->query($sql_select_cat);
+
+	if ($result->num_rows > 0) {
+		// output data of each row
+		while($row = $result->fetch_assoc()) {
+			$str .= '<option>'.$row["$table2Col2"].'</option>';
+		}
+	} else {
+		$str = "<option>No Data Found!</option>";
+	}
+	$conn->close();
+	return $str;
+}
+
 ?>
