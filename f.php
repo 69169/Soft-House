@@ -31,9 +31,9 @@ function insertData($softName,$softLink,$SoftImgLink,$softCategory) {
     $sql = "INSERT INTO `$db`.`$t1Name` (`ID`, `$table1Col2`, `$table1Col3`, `$table1Col4`, `$table1Col5`) VALUES (NULL, '$softName', '$softLink', '$SoftImgLink', '$softCategory')";
 
 	if ($conn->query($sql) === TRUE) {
-    	echo "Data Added Successfully";
+    	return "Data Added Successfully";
 	} else {
-    	echo "Error: " . $sql . "<br>" . $conn->error;
+    	return "Error: " . $sql . "<br>" . $conn->error;
 	}
 
 	$conn->close();
@@ -82,7 +82,6 @@ function selectData(){
 }
 
 //selectData();
-
 function selectDataHelper($mCategories){
   
 	global $conn;
@@ -285,7 +284,6 @@ function selectOption(){
 	} else {
 		$str = "<option>No Data Found!</option>";
 	}
-	$conn->close();
 	return $str;
 }
 
