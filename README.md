@@ -18,3 +18,14 @@ https://www.webhostingsecretrevealed.net/blog/web-hosting-guides/free-hosting-si
 
 login session 
 https://www.johnmorrisonline.com/build-php-login-form-using-sessions/
+
+Every One should have to make entry here that what is he doing...
+
+Pending Works List
+
+1: slider
+2: about us
+3: navbar links setting
+4: admin edit card layout
+5: admin delete card layout
+6: 
