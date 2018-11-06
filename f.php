@@ -1,6 +1,6 @@
 <?php
 
-require('connect.php');
+require('connect-wamp.php');
 $t1Name = "download-list";
 $table1Col2 = "SoftName";
 $table1Col3 = "SoftLink";

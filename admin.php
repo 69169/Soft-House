@@ -122,6 +122,37 @@ session_start();
 
 <!--	add card end-->
 	
+<!--	delete card start-->
+	
+	<div style="width: 80%; max-width: 500px; margin-top: 5%; display: none;" class="container" id="delCard">
+		
+		<form method="post" class="add-card-input">
+			<div class="form-group">
+				<label for="selectCat" class="text-white">Select Category</label>
+				<select class="form-control" name="cCat" required>
+					<?php echo selectOption(); ?>
+				</select>
+			</div>
+			
+			<div class="form-group">
+				<label for="soft-name" class="text-white">Software Name</label>
+				<input class="form-control add-card-input" id="soft-name" type="text" placeholder="Enter Software Name" name="cName" required>
+			</div>
+			<div class="form-group">
+				<label for="c-img-link" class="text-white">Card Image Link</label>
+				<input class="form-control add-card-input" id="c-img-link" type="url" placeholder="Enter Image URL" name="cImgUrl" required>
+			</div>
+			<div class="form-group">
+				<label for="download-link" class="text-white">Download Link</label>
+				<input class="form-control add-card-input" id="download-link" type="url" placeholder="Enter Download Link" name="cDownloadLink" required>
+			</div>
+			<input type="submit" name="submit" value="Add Card" class="btn btn-danger btn-lg">
+		</form>
+		
+	</div>
+	
+<!--	delete card end-->
+	
 	<script>
 		$('#side-menu-item-1').click(function(){
 			showAddCard();
