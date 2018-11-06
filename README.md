@@ -30,3 +30,5 @@ Pending Works List
 5: admin delete card layout
 6: 
 </pre>
+
+slider compelte and about us working for zeeshan
