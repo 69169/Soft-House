@@ -36,7 +36,7 @@ function insertData($softName,$softLink,$SoftImgLink,$softCategory) {
     	return "Error: " . $sql . "<br>" . $conn->error;
 	}
 
-	$conn->close();
+//	$conn->close();
 }
 
 //insertData("Mozila","mozi.com","mozi.img.com","Browser");
@@ -285,6 +285,22 @@ function selectOption(){
 		$str = "<option>No Data Found!</option>";
 	}
 	return $str;
+}
+
+function checkDupName($cName){
+	global $t1Name;
+	global $table1Col2;
+	global $conn;
+	
+	$check_duplicate = 'SELECT * FROM  `'.$t1Name.'` WHERE  `'.$table1Col2.'` =  "'.$cName.'"';
+	
+	$data = $conn->query($check_duplicate);
+	
+	if($data->num_rows > 0){
+		return true;
+	}else{
+		return false;
+	}
 }
 
 ?>

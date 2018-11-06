@@ -1,10 +1,13 @@
 <?php
+require('f.php');
 // Start the session
 session_start();
 ?>
 
 <html>
 <head>
+<!--	linking scripts and other files-->
+	
 	<script src="javascript.js"></script>
 	
 	<link rel="stylesheet" type="text/css" href="admin-page.css"/>
@@ -26,22 +29,35 @@ session_start();
 	
 <!--	bootstrap link end-->
 	
+<!--	end linking scripts-->
+	
 	<title>Control Panel</title>
 	
 	<style>
 		body{
 			margin: 0;
 			padding: 0;
-			background-image: url(http://asz-test.epizy.com//pics/bg.jpg);
+			background: #43cea2;  /* fallback for old browsers */
+			background: -webkit-linear-gradient(to right, #185a9d, #43cea2);
+			background: linear-gradient(to right, #185a9d, #43cea2);
 			font-family: sans-serif;
-			background-size: 100% auto;
-			background-color: #3A0BD8;
 			}
+		
+		#mHeading{
+			text-align: center;
+			font-size: 4vw;
+			color: white;
+			margin-left: 50px;
+			margin-right: 50px;
+			margin-top: 30px;
+		}
 	</style>
 	
 </head>
 <body>
-		
+	
+	<h1 id="mHeading"></h1>
+	
 <!--	login panel start-->
 	<div class="login-box">
 		<img src="http://asz-test.epizy.com//pics/users.jpg" alt="logo" class="avatar">
@@ -57,14 +73,15 @@ session_start();
 		</form>
 	</div>
 <!--	Login panel end-->
+	
      
 <!--	body elements start-->
 	
 	<div id="mySidenav" style="display: none">
-		<a href="#" id="side-menu-item-1">Add Card</a>
-		<a href="#" id="side-menu-item-2">Edit Card</a>
-		<a href="#" id="side-menu-item-3">Delete Card</a>
-		<a href="#" id="side-menu-item-4">Add Category</a>
+		<a href="#" id="side-menu-item-1">Card +</a>
+		<a href="#" id="side-menu-item-2">Edit Card !</a>
+		<a href="#" id="side-menu-item-3">Del Card !</a>
+		<a href="#" id="side-menu-item-4">Category +</a>
 		<a href="?logout=true" id="side-menu-item-5">Logout</a>
 	</div>
 	
@@ -82,7 +99,7 @@ session_start();
 			<div class="form-group">
 				<label for="selectCat" class="text-white">Select Category</label>
 				<select class="form-control" name="cCat" required>
-					<?php require('f.php'); echo selectOption(); ?>
+					<?php echo selectOption(); ?>
 				</select>
 			</div>
 			
@@ -112,6 +129,7 @@ session_start();
 
 		function showAddCard(){
 			$('#addCard').css("display", "");
+			$('#mHeading').text("Add Softwares").css({"border-bottom" : "double white", "border-bottom-width" : "thick"});
 		}
 	</script>
 	
@@ -189,20 +207,41 @@ if (isset($_POST['cCat']) and isset($_POST['cName']) and isset($_POST['cImgUrl']
 	$cName =  $_POST["cName"];
 	$cImgUrl =  $_POST["cImgUrl"];
 	$cDownloadLink =  $_POST["cDownloadLink"];
-	$result = insertData("$cName","$cDownloadLink","$cImgUrl","$cCat");
 	
-	$code = '
-	<div class="alert alert-success alert-dismissible fade show" style="position:absolute; 
-    bottom: 1%;
-    left: 15%; 
-    width: 70%;
-	z-index: 99;">
-    <button type="button" class="close" data-dismiss="alert">x</button>
-    <strong>Success!</strong> '.$cName.' is Added Sucessfullay in '.$cCat.' <a href="#" onClick="showAddCard();" class="alert-link">Add More...</a>
-  	</div>
-	';
+	if (checkDupName("$cName") == true) {
+		
+		$toast = '<strong>Error!</strong> '.$cName.' is Already Available in Database! Plz Select a Unique Name. <a href="#" onClick="showAddCard();" class="alert-link">Try Again...</a>';
+		
+		mAlert("alert-success","$toast");
+	}else{
 	
-	echo($code);
+		$result = insertData("$cName","$cDownloadLink","$cImgUrl","$cCat");
+		
+		$toast = '<strong>Success!</strong> '.$cName.' is Added Sucessfullay in '.$cCat.' <a href="#" onClick="showAddCard();" class="alert-link">Add More...</a>';
+		
+		mAlert("alert-success","$toast");
+		
+	}
 }
+
+function mAlert($alert_type,$msg){
+	$code = '
+		<div class="alert '.$alert_type.' alert-dismissible fade show" style="position:absolute; 
+		bottom: 1%;
+		left: 15%; 
+		width: 70%;
+		z-index: 99;">
+		<button type="button" class="close" data-dismiss="alert">X</button>
+		'.$msg.'
+		</div>
+		';
+
+		echo($code);
+}
+
+
+//SELECT * FROM  `download-list` WHERE  `SoftName` =  "Opera"
+
+//DELETE FROM `download-list` WHERE `SoftName` = 'VLC Media Player'
 
 ?>
