@@ -97,7 +97,7 @@ session_start();
 		
 		<form method="post" class="add-card-input">
 			<div class="form-group">
-				<label for="selectCat" class="text-white">Select Category</label>
+				<label for="catSelecter" class="text-white">Select Category</label>
 				<select class="form-control" name="cCat" required>
 					<?php echo selectOption(); ?>
 				</select>
@@ -129,24 +129,19 @@ session_start();
 		<form method="post" class="add-card-input">
 			<div class="form-group">
 				<label for="selectCat" class="text-white">Select Category</label>
-				<select class="form-control" name="cCat" required>
+				<select class="form-control" name="cDelCat" id="selectCat" required>
 					<?php echo selectOption(); ?>
 				</select>
 			</div>
 			
 			<div class="form-group">
-				<label for="soft-name" class="text-white">Software Name</label>
-				<input class="form-control add-card-input" id="soft-name" type="text" placeholder="Enter Software Name" name="cName" required>
+				<label for="selectName" class="text-white">Select Name</label>
+				<select class="form-control" name="cDelName" id="selectName" required>
+					
+				</select>
 			</div>
-			<div class="form-group">
-				<label for="c-img-link" class="text-white">Card Image Link</label>
-				<input class="form-control add-card-input" id="c-img-link" type="url" placeholder="Enter Image URL" name="cImgUrl" required>
-			</div>
-			<div class="form-group">
-				<label for="download-link" class="text-white">Download Link</label>
-				<input class="form-control add-card-input" id="download-link" type="url" placeholder="Enter Download Link" name="cDownloadLink" required>
-			</div>
-			<input type="submit" name="submit" value="Add Card" class="btn btn-danger btn-lg">
+			
+			<input type="submit" name="submit" value="Delete Card" class="btn btn-danger btn-lg">
 		</form>
 		
 	</div>
@@ -162,6 +157,34 @@ session_start();
 			$('#addCard').css("display", "");
 			$('#mHeading').text("Add Softwares").css({"border-bottom" : "double white", "border-bottom-width" : "thick"});
 		}
+		
+		$('#side-menu-item-3').click(function(){
+			showDelCard();
+		});
+
+		function showDelCard(){
+			$('#delCard').css("display", "");
+			$('#mHeading').text("Delete Softwares").css({"border-bottom" : "double white", "border-bottom-width" : "thick"});
+			makeList();
+		}
+		
+		$('#selectCat').on('change', function() {
+			makeList();
+		});
+		
+		function makeList(){
+			var inputValue = $('#selectCat').val();
+           //Ajax for calling php function
+			$.post('f.php', { catValForList: inputValue }, function(listOpt){
+                //do after submission operation in DOM
+				$('#selectName').html(listOpt);
+            });
+		}
+		
+//		$(document).ready(function(){
+//			
+//		});
+		
 	</script>
 	
 <!--	body element end-->

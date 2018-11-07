@@ -287,6 +287,34 @@ function selectOption(){
 	return $str;
 }
 
+if (isset($_POST['catValForList'])) {
+	
+	$catValForList =  $_POST["catValForList"];
+	echo selectNameDownList("$catValForList");
+}
+
+function selectNameDownList($cat){
+	$str = "";
+	global $conn;
+  	global $t1Name;
+  	global $db;
+	global $table1Col2;
+	global $table1Col5;
+	
+	$check_duplicate = 'SELECT * FROM  `'.$t1Name.'` WHERE  `'.$table1Col5.'` =  "'.$cat.'"';
+	$result = $conn->query($check_duplicate);
+
+	if ($result->num_rows > 0) {
+		// output data of each row
+		while($row = $result->fetch_assoc()) {
+			$str .= '<option>'.$row["$table1Col2"].'</option>';
+		}
+	} else {
+		$str = "<option>No Data Found!</option>";
+	}
+	return $str;
+}
+
 function checkDupName($cName){
 	global $t1Name;
 	global $table1Col2;
