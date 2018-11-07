@@ -19,6 +19,9 @@ https://www.webhostingsecretrevealed.net/blog/web-hosting-guides/free-hosting-si
 login session 
 https://www.johnmorrisonline.com/build-php-login-form-using-sessions/
 
+call php function from event
+https://stackoverflow.com/questions/42107672/dropdown-onchange-calling-php-function
+
 Every One should have to make entry here that what is he doing...
 
 Pending Works List

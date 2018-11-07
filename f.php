@@ -1,6 +1,6 @@
 <?php
 
-require('connect.php');
+require('connect-wamp.php');
 $t1Name = "download-list";
 $table1Col2 = "SoftName";
 $table1Col3 = "SoftLink";
@@ -31,12 +31,12 @@ function insertData($softName,$softLink,$SoftImgLink,$softCategory) {
     $sql = "INSERT INTO `$db`.`$t1Name` (`ID`, `$table1Col2`, `$table1Col3`, `$table1Col4`, `$table1Col5`) VALUES (NULL, '$softName', '$softLink', '$SoftImgLink', '$softCategory')";
 
 	if ($conn->query($sql) === TRUE) {
-    	echo "Data Added Successfully";
+    	return "Data Added Successfully";
 	} else {
-    	echo "Error: " . $sql . "<br>" . $conn->error;
+    	return "Error: " . $sql . "<br>" . $conn->error;
 	}
 
-	$conn->close();
+//	$conn->close();
 }
 
 //insertData("Mozila","mozi.com","mozi.img.com","Browser");
@@ -49,15 +49,14 @@ function deleteData($delSoftName){
   	global $table1Col2;
   	global $db;
 	
-	$sql_del = "DELETE FROM '$db'.'$t1Name' WHERE '$table1Col2' = '$delSoftName'";
+//	$sql_del = "DELETE FROM '$db'.'$t1Name' WHERE '$table1Col2' = '$delSoftName'";
+	$sql_del = "DELETE FROM `$t1Name` WHERE `$table1Col2` = '$delSoftName'";
 
 	if ($conn->query($sql_del) === TRUE) {
-		echo "Data Deleted Successfully";
+		return "Data Deleted Successfully";
 	} else {
-		echo "Error deleting record: " . $conn->error;
+		return "Error deleting record: " . $conn->error;
 	}
-
-	$conn->close();
 }
 
 function selectData(){
@@ -82,7 +81,6 @@ function selectData(){
 }
 
 //selectData();
-
 function selectDataHelper($mCategories){
   
 	global $conn;
@@ -285,8 +283,51 @@ function selectOption(){
 	} else {
 		$str = "<option>No Data Found!</option>";
 	}
-	$conn->close();
 	return $str;
+}
+
+if (isset($_POST['catValForList'])) {
+	
+	$catValForList =  $_POST["catValForList"];
+	echo selectNameDownList("$catValForList");
+}
+
+function selectNameDownList($cat){
+	$str = "";
+	global $conn;
+  	global $t1Name;
+  	global $db;
+	global $table1Col2;
+	global $table1Col5;
+	
+	$check_duplicate = 'SELECT * FROM  `'.$t1Name.'` WHERE  `'.$table1Col5.'` =  "'.$cat.'"';
+	$result = $conn->query($check_duplicate);
+
+	if ($result->num_rows > 0) {
+		// output data of each row
+		while($row = $result->fetch_assoc()) {
+			$str .= '<option>'.$row["$table1Col2"].'</option>';
+		}
+	} else {
+		$str = "<option>No Data Found!</option>";
+	}
+	return $str;
+}
+
+function checkDupName($cName){
+	global $t1Name;
+	global $table1Col2;
+	global $conn;
+	
+	$check_duplicate = 'SELECT * FROM  `'.$t1Name.'` WHERE  `'.$table1Col2.'` =  "'.$cName.'"';
+	
+	$data = $conn->query($check_duplicate);
+	
+	if($data->num_rows > 0){
+		return true;
+	}else{
+		return false;
+	}
 }
 
 ?>
