@@ -49,15 +49,14 @@ function deleteData($delSoftName){
   	global $table1Col2;
   	global $db;
 	
-	$sql_del = "DELETE FROM '$db'.'$t1Name' WHERE '$table1Col2' = '$delSoftName'";
+//	$sql_del = "DELETE FROM '$db'.'$t1Name' WHERE '$table1Col2' = '$delSoftName'";
+	$sql_del = "DELETE FROM `$t1Name` WHERE `$table1Col2` = '$delSoftName'";
 
 	if ($conn->query($sql_del) === TRUE) {
-		echo "Data Deleted Successfully";
+		return "Data Deleted Successfully";
 	} else {
-		echo "Error deleting record: " . $conn->error;
+		return "Error deleting record: " . $conn->error;
 	}
-
-	$conn->close();
 }
 
 function selectData(){

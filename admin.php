@@ -8,8 +8,6 @@ session_start();
 <head>
 <!--	linking scripts and other files-->
 	
-	<script src="javascript.js"></script>
-	
 	<link rel="stylesheet" type="text/css" href="admin-page.css"/>
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
@@ -26,6 +24,8 @@ session_start();
 
 	<!-- Latest compiled JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+	
+	<script src="javascript.js"></script>
 	
 <!--	bootstrap link end-->
 	
@@ -126,7 +126,7 @@ session_start();
 	
 	<div style="width: 80%; max-width: 500px; margin-top: 5%; display: none;" class="container" id="delCard">
 		
-		<form method="post" class="add-card-input">
+		<form method="post">
 			<div class="form-group">
 				<label for="selectCat" class="text-white">Select Category</label>
 				<select class="form-control" name="cDelCat" id="selectCat" required>
@@ -149,7 +149,9 @@ session_start();
 <!--	delete card end-->
 	
 	<script>
+		
 		$('#side-menu-item-1').click(function(){
+			hideAllBodyContent();
 			showAddCard();
 		});
 
@@ -159,6 +161,7 @@ session_start();
 		}
 		
 		$('#side-menu-item-3').click(function(){
+			hideAllBodyContent();
 			showDelCard();
 		});
 
@@ -179,6 +182,11 @@ session_start();
                 //do after submission operation in DOM
 				$('#selectName').html(listOpt);
             });
+		}
+		
+		function hideAllBodyContent(){
+			$('#addCard').css("display", "none");
+			$('#delCard').css("display", "none");
 		}
 		
 //		$(document).ready(function(){
@@ -266,7 +274,7 @@ if (isset($_POST['cCat']) and isset($_POST['cName']) and isset($_POST['cImgUrl']
 		
 		$toast = '<strong>Error!</strong> '.$cName.' is Already Available in Database! Plz Select a Unique Name. <a href="#" onClick="showAddCard();" class="alert-link">Try Again...</a>';
 		
-		mAlert("alert-success","$toast");
+		mAlert("alert-warning","$toast");
 	}else{
 	
 		$result = insertData("$cName","$cDownloadLink","$cImgUrl","$cCat");
@@ -275,6 +283,23 @@ if (isset($_POST['cCat']) and isset($_POST['cName']) and isset($_POST['cImgUrl']
 		
 		mAlert("alert-success","$toast");
 		
+	}
+}
+
+//delete card from database
+if (isset($_POST['cDelCat']) and isset($_POST['cDelName'])) {
+	
+	$cDelName =  $_POST["cDelName"];
+	$result = deleteData("$cDelName");
+		
+	if($result == "Data Deleted Successfully"){
+		$toast = '<strong>Success!</strong> '.$cDelName.' is Deleted Sucessfullay. <a href="#" onClick="showDelCard();" class="alert-link">Delete More...</a>';
+		
+		mAlert("alert-success","$toast");
+	}else{
+		$toast = '<strong>Error!</strong> Can Not Delete '.$cDelName.' From Database! '.$result.' <a href="#" onClick="showDelCard();" class="alert-link">Try Again...</a>';
+		
+		mAlert("alert-danger","$toast");
 	}
 }
 
