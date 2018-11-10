@@ -153,7 +153,7 @@ session_start();
 <!--	edit card start-->
 	
 	<div style="width: 80%; display: none;" class="container" id="editCard">
-		<div class="row" style="height: auto;">
+		<div class="row" style="height: auto; padding-top: 20px; padding-bottom: 20px;">
 			<div class="col-sm-6 bg-danger">
 				
 				<div style="margin-left: 20px; margin-right: 20px;">
@@ -175,7 +175,7 @@ session_start();
 				
 			</div>
 		</div>
-		<div class="row" style="height: auto;">
+		<div class="row" style="height: auto; padding-top: 20px; padding-bottom: 20px;">
 			<div class="col-sm-6 bg-warning">
 				
 			</div>
@@ -250,6 +250,21 @@ session_start();
 			$.post('f.php', { catValForList: inputValue }, function(listOpt){
                 //do after submission operation in DOM
 				$('#selectEditName').html(listOpt);
+            });
+		}
+		
+		$('#selectEditName').on('change', function() {
+			editSpinnerSelected();
+		});
+		
+		
+//		working
+		function editSpinnerSelected(){
+			var selectedValue = $('#selectEditName').val();
+           //Ajax for calling php function
+			$.post('f.php', { catValForList: selectedValue }, function(listOpt){
+                //do after submission operation in DOM
+				
             });
 		}
 		
