@@ -138,7 +138,7 @@ session_start();
 			<div class="form-group">
 				<label for="selectName" class="text-white">Select Name</label>
 				<select class="form-control" name="cDelName" id="selectName" required>
-					
+<!--						option will be created from jquery with php-->
 				</select>
 			</div>
 			
@@ -149,7 +149,49 @@ session_start();
 	
 <!--	delete card end-->
 	
+	
+<!--	edit card start-->
+	
+	<div style="width: 80%; display: none;" class="container" id="editCard">
+		<div class="row" style="height: auto;">
+			<div class="col-sm-6 bg-danger">
+				
+				<div style="margin-left: 20px; margin-right: 20px;">
+					<label for="selectEditCat" class="text-white">Select Category</label>
+					<select class="form-control" id="selectEditCat" required>
+						<?php echo selectOption(); ?>
+					</select>
+				</div>
+			
+				<div style="margin-left: 20px; margin-right: 20px;">
+					<label for="selectEditName" class="text-white">Select Name</label>
+					<select class="form-control" id="selectEditName" required>
+<!--						option will be created from jquery with php-->
+					</select>
+				</div>
+				
+			</div>
+			<div class="col-sm-6 bg-warning">
+				
+			</div>
+		</div>
+		<div class="row" style="height: auto;">
+			<div class="col-sm-6 bg-warning">
+				
+			</div>
+			<div class="col-sm-6 bg-danger">
+				
+			</div>
+		</div>
+		<button class="btn btn-block btn-success" style="margin-top: 10px;">Update Card</button>
+	</div>
+	
+<!--	edit card end-->
+	
+	
 	<script>
+		
+//		start menu button clicks
 		
 		$('#side-menu-item-1').click(function(){
 			hideAllBodyContent();
@@ -159,6 +201,17 @@ session_start();
 		function showAddCard(){
 			$('#addCard').css("display", "");
 			$('#mHeading').text("Add Softwares").css({"border-bottom" : "double white", "border-bottom-width" : "thick"});
+		}
+		
+		$('#side-menu-item-2').click(function(){
+			hideAllBodyContent();
+			showEditCard();
+		});
+
+		function showEditCard(){
+			$('#editCard').css("display", "");
+			$('#mHeading').text("Edit Softwares").css({"border-bottom" : "double white", "border-bottom-width" : "thick"});
+			makeEditList();
 		}
 		
 		$('#side-menu-item-3').click(function(){
@@ -171,6 +224,8 @@ session_start();
 			$('#mHeading').text("Delete Softwares").css({"border-bottom" : "double white", "border-bottom-width" : "thick"});
 			makeList();
 		}
+		
+//		end menu button clicks
 		
 		$('#selectCat').on('change', function() {
 			makeList();
@@ -185,9 +240,23 @@ session_start();
             });
 		}
 		
+		$('#selectEditCat').on('change', function() {
+			makeEditList();
+		});
+		
+		function makeEditList(){
+			var inputValue = $('#selectEditCat').val();
+           //Ajax for calling php function
+			$.post('f.php', { catValForList: inputValue }, function(listOpt){
+                //do after submission operation in DOM
+				$('#selectEditName').html(listOpt);
+            });
+		}
+		
 		function hideAllBodyContent(){
 			$('#addCard').css("display", "none");
 			$('#delCard').css("display", "none");
+			$('#editCard').css("display", "none");
 		}
 		
 //		$(document).ready(function(){

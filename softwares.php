@@ -6,7 +6,9 @@
 	<script src="bootstrap4/js/bootstrap.min.js"></script>
 	
 <link rel="stylesheet" type="text/css" href="c-style.css"/>
-<link rel="stylesheet" type="text/css" href="software-social.css"/>
+
+	
+	
 <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
 <title>Softwares - Download</title>
 </head>
@@ -38,55 +40,18 @@
 			 </div>
 		 </div>
 	</div>
-	<div class="row bg-light bottom-row" id="about">
-		<div class="col-sm-3">
-			<div style="text-align: center;">
-				<h3 style="color: cadetblue">About Us</h3>
-				<p>ASZ Info</p>
-				<p>Help &amp; Support</p>
-				<p>Company News</p>
-    		</div>
-		</div>
-		<div class="col-sm-3">
-			<div style="text-align: center;">
-				<h3 style="color: cadetblue">Developers</h3>
-				<p>ASZ Software Coporation</p>
-				<p>Upload &amp;Manage Your Software</p>
-				<p>Advertisement Opertunities</p>
-    		</div>
-		</div>
-		<div class="col-sm-3">
-			<div style="text-align: center;">
-				<h3 style="color: cadetblue">Legal</h3>
-				<p>Software Policy</p>
-				<p>Legal Information</p>
-				<p>Term &amp; Conditons </p>
-    		</div>
-		</div>
-		<div class="col-sm-3">
-			<div style="text-align: center;">
-				<h3 style="color: cadetblue">Users</h3>
-				<div id="icon-bar">
-				  <a href="#" class="facebook"><i class="fa fa-facebook"></i></a> 
-				  <a href="#" class="twitter"><i class="fa fa-twitter"></i></a> 
-				  <a href="#" class="google"><i class="fa fa-google"></i></a> 
-				  <a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
-				  <a href="#" class="youtube"><i class="fa fa-youtube"></i></a> 
-                </div>
-				<p>ASZ Solution</p>
-				<p>Discount Codes</p>
-				<p>ASZ Businuss</p>
-    		</div>
-		</div>
-	</div>
 	
-	<div style="width: 100%; height: 100px; background-color: cornflowerblue; vertical-align: middle;" align="center">
-		<footer style="line-height: 100px; text-align: center;">
-			All Rights Resived by &copy;ASZ Coporation
-		</footer>	
-	</div>
+	<div class="footer-about"></div>
 	
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<div class="myFooter"></div>
+	
+	<script>
+		$(document).ready(function(){
+			$('.footer-about').load('about.html');
+			$('.myFooter').load('footer.html');
+		});
+	</script>
+	
 </body>
 
 </html>
