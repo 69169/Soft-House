@@ -40,6 +40,7 @@ session_start();
 			background: #43cea2;  /* fallback for old browsers */
 			background: -webkit-linear-gradient(to right, #185a9d, #43cea2);
 			background: linear-gradient(to right, #185a9d, #43cea2);
+/*			background: linear-gradient(#0D4353, #03282B);*/
 			font-family: sans-serif;
 			}
 		

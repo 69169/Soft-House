@@ -1,13 +1,12 @@
 @charset "utf-8";
 body {margin:0;height:2000px;}
 
-.icon-bar {
+#icon-bar {
   position:relative;
   top: 100%;
   -webkit-transform: translateY(-70%);
   -ms-transform: translateY(-70%);
- transform: translateY(-70%);
-	
+  transform: translateY(-70%);
 }
 
 .icon-bar a {
