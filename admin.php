@@ -10,7 +10,7 @@ session_start();
 	
 	<link rel="stylesheet" type="text/css" href="admin-page.css"/>
 	
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.js"></script>
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
 	
@@ -243,14 +243,12 @@ session_start();
 			</div>
 			
 		</div>
-		<div class="row" style="height: auto; padding-top: 20px; padding-bottom: 20px;">
-			
-		</div>
 		<button class="btn btn-block btn-success" style="margin-top: 10px;">Update Card</button>
 	</div>
 	
 <!--	edit card end-->
 	
+<!--	it is needed to hold some values-->
 	<div id="tempForEdit" style="display: none"></div>
 	
 	<script>
@@ -344,27 +342,17 @@ session_start();
 				$('#selectNewSoftName').val(eName);
 				$('#selectNewSoftImgLink').val(eImgUrl);
 				$('#selectNewSoftDownLink').val(eDownUrl);
+				angular.element($('#selectNewSoftName')).triggerHandler('input');
+				angular.element($('#selectNewSoftImgLink')).triggerHandler('input');
+				angular.element($('#selectNewSoftDownLink')).triggerHandler('input');
 				
 				$('#titleOld').text(eName);
 				$('#imgLinkOld').attr('src',eImgUrl);
 				$('#btnDownOld').attr('href',eDownUrl);
 				
-//				working now
-				var app = angular.module('myApp', []);
-				app.controller('myCtrl', function($scope) {
-//					$scope.newName = eName;
-				});
-				
-//				var titleNew = document.getElementById("titleOld");
-//				var element = angular.element(titleOld);
-//				element.val('new value here');
-//				element.triggerHandler('input');
-				
-//				$('#titleNew').text(eName);
-//				$('#imgLinkNew').attr('src',eImgUrl);
-//				$('#btnDownNew').attr('href',eDownUrl);
             });
 		}
+		
 		
 		function hideAllBodyContent(){
 			$('#addCard').css("display", "none");
