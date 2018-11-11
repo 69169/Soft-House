@@ -152,28 +152,56 @@ session_start();
 	
 <!--	edit card start-->
 	
+	<style>
+		.res-t-size-heading{
+			font-size: 20px;
+			color: white;
+		}
+	</style>
+	
 	<div style="width: 80%; display: none;" class="container" id="editCard">
 		<div class="row" style="height: auto; padding-top: 20px; padding-bottom: 20px;">
 			<div class="col-sm-6 bg-danger">
 				
 				<div style="margin-left: 20px; margin-right: 20px;">
-					<label for="selectEditCat" class="text-white">Select Category</label>
+					<label for="selectEditCat" class="res-t-size-heading">Select Category</label>
 					<select class="form-control" id="selectEditCat" required>
 						<?php echo selectOption(); ?>
 					</select>
 				</div>
 			
 				<div style="margin-left: 20px; margin-right: 20px;">
-					<label for="selectEditName" class="text-white">Select Name</label>
+					<label for="selectEditName" class="res-t-size-heading">Select Name</label>
 					<select class="form-control" id="selectEditName" required>
 <!--						option will be created from jquery with php-->
 					</select>
 				</div>
 				
 			</div>
+			
 			<div class="col-sm-6 bg-warning">
-				
+				<div style="margin-left: 20px; margin-right: 20px;">
+					<div>
+						<label for="selectNewEditCat" class="res-t-size-heading">Select New Category:</label>
+						<select class="form-control" id="selectNewEditCat" required>
+							<?php echo selectOption(); ?>
+						</select>
+					</div>
+					<div>
+						<label for="selectNewSoftName" class="res-t-size-heading">Software New Name:</label>
+						<input class="form-control" id="selectNewSoftName" type="text" placeholder="Enter Software Name">
+					</div>
+					<div>
+						<label for="selectNewSoftImgLink" class="res-t-size-heading">New Card Image Link:</label>
+						<input class="form-control" id="selectNewSoftImgLink" type="text" placeholder="Enter Image URL">
+					</div>
+					<div>
+						<label for="selectNewSoftDownLink" class="res-t-size-heading">New Download Link:</label>
+						<input class="form-control" id="selectNewSoftDownLink" type="text" placeholder="Enter Download Link">
+					</div>
+				</div>
 			</div>
+			
 		</div>
 		<div class="row" style="height: auto; padding-top: 20px; padding-bottom: 20px;">
 			<div class="col-sm-6 bg-warning">
@@ -188,6 +216,7 @@ session_start();
 	
 <!--	edit card end-->
 	
+	<div id="tempForEdit" style="display: none"></div>
 	
 	<script>
 		
@@ -258,13 +287,15 @@ session_start();
 		});
 		
 		
-//		working
 		function editSpinnerSelected(){
 			var selectedValue = $('#selectEditName').val();
+			var selectedCat = $('#selectEditCat').val();
            //Ajax for calling php function
-			$.post('f.php', { catValForList: selectedValue }, function(listOpt){
+			$.post('f.php', { nameForEdit: selectedValue, catForEdit: selectedCat }, function(output){
                 //do after submission operation in DOM
-				
+				$('#tempForEdit').html(output);
+//						working
+//				alert($('#sIdForEdit').text());
             });
 		}
 		
