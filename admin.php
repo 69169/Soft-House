@@ -157,6 +157,16 @@ session_start();
 			font-size: 20px;
 			color: white;
 		}
+		.subHeading{
+			text-align: center;
+			font-size: 1.5vw;
+			color: white;
+			margin-left: 50px;
+			margin-right: 50px;
+			margin-top: 30px;
+			border-bottom : double white;
+			border-bottom-width : thick;
+		}
 	</style>
 	
 	<div style="width: 80%; display: none;" class="container" id="editCard">
@@ -183,7 +193,7 @@ session_start();
 				<div style="margin-left: 20px; margin-right: 20px;">
 					<div>
 						<label for="selectNewEditCat" class="res-t-size-heading">Select New Category:</label>
-						<select class="form-control" id="selectNewEditCat" required>
+						<select class="form-control" id="selectNewEditCat" required name="newSelecter">
 							<?php echo selectOption(); ?>
 						</select>
 					</div>
@@ -204,7 +214,17 @@ session_start();
 			
 		</div>
 		<div class="row" style="height: auto; padding-top: 20px; padding-bottom: 20px;">
-			<div class="col-sm-6 bg-warning">
+			<div class="col-sm-6 bg-warning">		
+				
+				<h3 class="subHeading">Old Card layout</h3>
+				
+				<div class="card" style="width: 40%">
+					<img class="card-img-top" alt="Card image" style="width:100%" id="imgLinkOld">
+					<div class="card-body">
+						<h4 class="card-title" id="titleOld"></h4>
+						<a href="" class="btn btn-primary" id="btnDownOld">Download</a>
+					</div>
+				</div>
 				
 			</div>
 			<div class="col-sm-6 bg-danger">
@@ -275,17 +295,23 @@ session_start();
 		
 		function makeEditList(){
 			var inputValue = $('#selectEditCat').val();
+			
+			$('[name=newSelecter] option').filter(function() { 
+				return ($(this).text() == inputValue);
+				}).prop('selected', true);
+			
            //Ajax for calling php function
 			$.post('f.php', { catValForList: inputValue }, function(listOpt){
                 //do after submission operation in DOM
 				$('#selectEditName').html(listOpt);
+//				it is needed to run after name spinner is populated
+				editSpinnerSelected();
             });
 		}
 		
 		$('#selectEditName').on('change', function() {
 			editSpinnerSelected();
 		});
-		
 		
 		function editSpinnerSelected(){
 			var selectedValue = $('#selectEditName').val();
@@ -294,8 +320,19 @@ session_start();
 			$.post('f.php', { nameForEdit: selectedValue, catForEdit: selectedCat }, function(output){
                 //do after submission operation in DOM
 				$('#tempForEdit').html(output);
-//						working
-//				alert($('#sIdForEdit').text());
+
+				var eId = $('#sIdForEdit').text();
+				var eName = $('#sNameForEdit').text();
+				var eImgUrl = $('#sImgLinkForEdit').text();
+				var eDownUrl = $('#sDownLinkForEdit').text();
+				
+				$('#selectNewSoftName').val(eName);
+				$('#selectNewSoftImgLink').val(eImgUrl);
+				$('#selectNewSoftDownLink').val(eDownUrl);
+				
+				$('#titleOld').text(eName);
+				$('#imgLinkOld').attr('src',eImgUrl);
+				$('#btnDownOld').attr('href',eDownUrl);
             });
 		}
 		
