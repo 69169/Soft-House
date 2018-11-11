@@ -10,6 +10,8 @@ session_start();
 	
 	<link rel="stylesheet" type="text/css" href="admin-page.css"/>
 	
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+	
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
 	
 <!--	bootstrap link start-->
@@ -161,17 +163,17 @@ session_start();
 			text-align: center;
 			font-size: 1.5vw;
 			color: white;
-			margin-left: 50px;
-			margin-right: 50px;
-			margin-top: 30px;
+			margin-left: 2%;
+			margin-right: 2%;
+			margin-top: 20px;
 			border-bottom : double white;
 			border-bottom-width : thick;
 		}
 	</style>
 	
 	<div style="width: 80%; display: none;" class="container" id="editCard">
-		<div class="row" style="height: auto; padding-top: 20px; padding-bottom: 20px;">
-			<div class="col-sm-6 bg-danger">
+		<div class="row" style="height: auto; padding-top: 20px; padding-bottom: 20px;" ng-app="">
+			<div class="col-sm-3 bg-danger">
 				
 				<div style="margin-left: 20px; margin-right: 20px;">
 					<label for="selectEditCat" class="res-t-size-heading">Select Category</label>
@@ -189,7 +191,7 @@ session_start();
 				
 			</div>
 			
-			<div class="col-sm-6 bg-warning">
+			<div class="col-sm-3 bg-warning">
 				<div style="margin-left: 20px; margin-right: 20px;">
 					<div>
 						<label for="selectNewEditCat" class="res-t-size-heading">Select New Category:</label>
@@ -199,37 +201,50 @@ session_start();
 					</div>
 					<div>
 						<label for="selectNewSoftName" class="res-t-size-heading">Software New Name:</label>
-						<input class="form-control" id="selectNewSoftName" type="text" placeholder="Enter Software Name">
+						<input class="form-control" id="selectNewSoftName" type="text" placeholder="Enter Software Name" ng-model="newName">
 					</div>
 					<div>
 						<label for="selectNewSoftImgLink" class="res-t-size-heading">New Card Image Link:</label>
-						<input class="form-control" id="selectNewSoftImgLink" type="text" placeholder="Enter Image URL">
+						<input class="form-control" id="selectNewSoftImgLink" type="text" placeholder="Enter Image URL" ng-model="newImgLink">
 					</div>
 					<div>
 						<label for="selectNewSoftDownLink" class="res-t-size-heading">New Download Link:</label>
-						<input class="form-control" id="selectNewSoftDownLink" type="text" placeholder="Enter Download Link">
+						<input class="form-control" id="selectNewSoftDownLink" type="text" placeholder="Enter Download Link" ng-model="newDownLink">
 					</div>
 				</div>
 			</div>
 			
+			<div class="col-sm-3 bg-danger">		
+				
+				<h3 class="subHeading">Old Card Layout</h3>
+				<center>
+					<div class="card" style="width: 90%;">
+						<img class="card-img-top" alt="Card image" style="width:100%; max-width: 200px; max-height: 200px;" id="imgLinkOld">
+						<div class="card-body">
+							<h4 class="card-title" id="titleOld"></h4>
+							<a href="" class="btn btn-primary" id="btnDownOld">Download</a>
+						</div>
+					</div>
+				</center>
+			</div>
+			<div class="col-sm-3 bg-warning">
+				
+				<h3 class="subHeading">New Card Layout</h3>
+				<center>
+					<div class="card" style="width: 90%;">
+						<img class="card-img-top" alt="Card image" style="width:100%; max-width: 200px; max-height: 200px;" id="imgLinkNew" src="{{newImgLink}}">
+						<div class="card-body">
+							<h4 class="card-title" id="titleNew">{{newName}}</h4>
+							<a href="{{newDownLink}}" class="btn btn-primary" id="btnDownNew">Download</a>
+						</div>
+					</div>
+				</center>
+				
+			</div>
+			
 		</div>
 		<div class="row" style="height: auto; padding-top: 20px; padding-bottom: 20px;">
-			<div class="col-sm-6 bg-warning">		
-				
-				<h3 class="subHeading">Old Card layout</h3>
-				
-				<div class="card" style="width: 40%">
-					<img class="card-img-top" alt="Card image" style="width:100%" id="imgLinkOld">
-					<div class="card-body">
-						<h4 class="card-title" id="titleOld"></h4>
-						<a href="" class="btn btn-primary" id="btnDownOld">Download</a>
-					</div>
-				</div>
-				
-			</div>
-			<div class="col-sm-6 bg-danger">
-				
-			</div>
+			
 		</div>
 		<button class="btn btn-block btn-success" style="margin-top: 10px;">Update Card</button>
 	</div>
@@ -333,6 +348,21 @@ session_start();
 				$('#titleOld').text(eName);
 				$('#imgLinkOld').attr('src',eImgUrl);
 				$('#btnDownOld').attr('href',eDownUrl);
+				
+//				working now
+				var app = angular.module('myApp', []);
+				app.controller('myCtrl', function($scope) {
+//					$scope.newName = eName;
+				});
+				
+//				var titleNew = document.getElementById("titleOld");
+//				var element = angular.element(titleOld);
+//				element.val('new value here');
+//				element.triggerHandler('input');
+				
+//				$('#titleNew').text(eName);
+//				$('#imgLinkNew').attr('src',eImgUrl);
+//				$('#btnDownNew').attr('href',eDownUrl);
             });
 		}
 		
