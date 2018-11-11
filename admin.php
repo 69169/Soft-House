@@ -10,6 +10,8 @@ session_start();
 	
 	<link rel="stylesheet" type="text/css" href="admin-page.css"/>
 	
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.js"></script>
+	
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
 	
 <!--	bootstrap link start-->
@@ -152,42 +154,102 @@ session_start();
 	
 <!--	edit card start-->
 	
+	<style>
+		.res-t-size-heading{
+			font-size: 20px;
+			color: white;
+		}
+		.subHeading{
+			text-align: center;
+			font-size: 1.5vw;
+			color: white;
+			margin-left: 2%;
+			margin-right: 2%;
+			margin-top: 20px;
+			border-bottom : double white;
+			border-bottom-width : thick;
+		}
+	</style>
+	
 	<div style="width: 80%; display: none;" class="container" id="editCard">
-		<div class="row" style="height: auto;">
-			<div class="col-sm-6 bg-danger">
+		<div class="row" style="height: auto; padding-top: 20px; padding-bottom: 20px;" ng-app="">
+			<div class="col-sm-3 bg-danger">
 				
 				<div style="margin-left: 20px; margin-right: 20px;">
-					<label for="selectEditCat" class="text-white">Select Category</label>
+					<label for="selectEditCat" class="res-t-size-heading">Select Category</label>
 					<select class="form-control" id="selectEditCat" required>
 						<?php echo selectOption(); ?>
 					</select>
 				</div>
 			
 				<div style="margin-left: 20px; margin-right: 20px;">
-					<label for="selectEditName" class="text-white">Select Name</label>
+					<label for="selectEditName" class="res-t-size-heading">Select Name</label>
 					<select class="form-control" id="selectEditName" required>
 <!--						option will be created from jquery with php-->
 					</select>
 				</div>
 				
 			</div>
-			<div class="col-sm-6 bg-warning">
+			
+			<div class="col-sm-3 bg-warning">
+				<div style="margin-left: 20px; margin-right: 20px;">
+					<div>
+						<label for="selectNewEditCat" class="res-t-size-heading">Select New Category:</label>
+						<select class="form-control" id="selectNewEditCat" required name="newSelecter">
+							<?php echo selectOption(); ?>
+						</select>
+					</div>
+					<div>
+						<label for="selectNewSoftName" class="res-t-size-heading">Software New Name:</label>
+						<input class="form-control" id="selectNewSoftName" type="text" placeholder="Enter Software Name" ng-model="newName">
+					</div>
+					<div>
+						<label for="selectNewSoftImgLink" class="res-t-size-heading">New Card Image Link:</label>
+						<input class="form-control" id="selectNewSoftImgLink" type="text" placeholder="Enter Image URL" ng-model="newImgLink">
+					</div>
+					<div>
+						<label for="selectNewSoftDownLink" class="res-t-size-heading">New Download Link:</label>
+						<input class="form-control" id="selectNewSoftDownLink" type="text" placeholder="Enter Download Link" ng-model="newDownLink">
+					</div>
+				</div>
+			</div>
+			
+			<div class="col-sm-3 bg-danger">		
+				
+				<h3 class="subHeading">Old Card Layout</h3>
+				<center>
+					<div class="card" style="width: 90%;">
+						<img class="card-img-top" alt="Card image" style="width:100%; max-width: 200px; max-height: 200px;" id="imgLinkOld">
+						<div class="card-body">
+							<h4 class="card-title" id="titleOld"></h4>
+							<a href="" class="btn btn-primary" id="btnDownOld">Download</a>
+						</div>
+					</div>
+				</center>
+			</div>
+			<div class="col-sm-3 bg-warning">
+				
+				<h3 class="subHeading">New Card Layout</h3>
+				<center>
+					<div class="card" style="width: 90%;">
+						<img class="card-img-top" alt="Card image" style="width:100%; max-width: 200px; max-height: 200px;" id="imgLinkNew" src="{{newImgLink}}">
+						<div class="card-body">
+							<h4 class="card-title" id="titleNew">{{newName}}</h4>
+							<a href="{{newDownLink}}" class="btn btn-primary" id="btnDownNew">Download</a>
+						</div>
+					</div>
+				</center>
 				
 			</div>
-		</div>
-		<div class="row" style="height: auto;">
-			<div class="col-sm-6 bg-warning">
-				
-			</div>
-			<div class="col-sm-6 bg-danger">
-				
-			</div>
+			
 		</div>
 		<button class="btn btn-block btn-success" style="margin-top: 10px;">Update Card</button>
 	</div>
 	
 <!--	edit card end-->
 	
+<!--	it is needed to hold some values-->
+	<div id="tempForEdit" style="display: none"></div>
 	
 	<script>
 		
@@ -246,12 +308,51 @@ session_start();
 		
 		function makeEditList(){
 			var inputValue = $('#selectEditCat').val();
+			
+			$('[name=newSelecter] option').filter(function() { 
+				return ($(this).text() == inputValue);
+				}).prop('selected', true);
+			
            //Ajax for calling php function
 			$.post('f.php', { catValForList: inputValue }, function(listOpt){
                 //do after submission operation in DOM
 				$('#selectEditName').html(listOpt);
+//				it is needed to run after name spinner is populated
+				editSpinnerSelected();
             });
 		}
+		
+		$('#selectEditName').on('change', function() {
+			editSpinnerSelected();
+		});
+		
+		function editSpinnerSelected(){
+			var selectedValue = $('#selectEditName').val();
+			var selectedCat = $('#selectEditCat').val();
+           //Ajax for calling php function
+			$.post('f.php', { nameForEdit: selectedValue, catForEdit: selectedCat }, function(output){
+                //do after submission operation in DOM
+				$('#tempForEdit').html(output);
+
+				var eId = $('#sIdForEdit').text();
+				var eName = $('#sNameForEdit').text();
+				var eImgUrl = $('#sImgLinkForEdit').text();
+				var eDownUrl = $('#sDownLinkForEdit').text();
+				
+				$('#selectNewSoftName').val(eName);
+				$('#selectNewSoftImgLink').val(eImgUrl);
+				$('#selectNewSoftDownLink').val(eDownUrl);
+				angular.element($('#selectNewSoftName')).triggerHandler('input');
+				angular.element($('#selectNewSoftImgLink')).triggerHandler('input');
+				angular.element($('#selectNewSoftDownLink')).triggerHandler('input');
+				
+				$('#titleOld').text(eName);
+				$('#imgLinkOld').attr('src',eImgUrl);
+				$('#btnDownOld').attr('href',eDownUrl);
+				
+            });
+		}
+		
 		
 		function hideAllBodyContent(){
 			$('#addCard').css("display", "none");

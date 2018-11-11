@@ -314,6 +314,38 @@ function selectNameDownList($cat){
 	return $str;
 }
 
+if (isset($_POST['nameForEdit']) and isset($_POST['catForEdit'])) {
+	
+	$catForEdit =  $_POST["catForEdit"];
+	$nameForEdit =  $_POST["nameForEdit"];
+//	echo selectNameDownList("$nameForEdit");
+	
+	global $conn;
+  	global $t1Name;
+	global $table1Col5;
+	global $table1Col2;
+	
+	$sql_select_cat = "SELECT * FROM `$t1Name` WHERE `$table1Col5` = '$catForEdit' AND `$table1Col2` = '$nameForEdit'";
+	$result = $conn->query($sql_select_cat);
+
+	$str = "";
+	
+	if ($result->num_rows > 0) {
+		// output data of each row
+		while($row = $result->fetch_assoc()) {
+//			selectDataHelper($row["$table2Col2"]);
+			$str = '<h1 id="sIdForEdit">'.$row["ID"].'</h1>
+			<h1 id="sNameForEdit">'.$row["$table1Col2"].'</h1>
+			<h1 id="sImgLinkForEdit">'.$row["$table1Col4"].'</h1>
+			<h1 id="sDownLinkForEdit">'.$row["$table1Col3"].'</h1>';
+		}
+	} else {
+		$str = '<h1 id="sNameForEdit">Nothing Found</h1>';
+	}
+	
+	echo $str;
+}
+
 function checkDupName($cName){
 	global $t1Name;
 	global $table1Col2;
@@ -329,5 +361,7 @@ function checkDupName($cName){
 		return false;
 	}
 }
+
+//SELECT * FROM `download-list` WHERE `Category` = 'Player' AND `SoftName` = 'GPM'
 
 ?>
