@@ -262,6 +262,35 @@ session_start();
 	
 <!--	edit card end-->
 	
+<!--	category addition deletion start-->
+	
+	<div class="container" id="catAdd" style="display: none; width: 80%; height: auto; margin-top: 5%;">
+		<div class="row">
+			<div class="col-md-6 mEditCols">
+				<h3 class="subHeading">Add Category</h3>
+				<label for="newCatInput" class="res-t-size-heading">New Category:</label>
+				<input type="text" class="form-control" id="newCatInput" placeholder="Like : Browsers"/>
+				<button id="btnAddCat" class="btn btn-block btn-success" style="margin-top: 15px; margin-bottom: 15px;">
+					Add Category
+				</button>
+			</div>
+			<div class="col-md-6 mEditCols">
+				<h3 class="subHeading">Delete Category</h3>
+				<div>
+					<label for="deleteCatSelecter" class="res-t-size-heading">Select Category:</label>
+					<select class="form-control" id="deleteCatSelecter" required>
+						<?php echo selectOption(); ?>
+					</select>
+				</div>
+				<button id="btnDeleteCat" class="btn btn-block btn-danger" style="margin-top: 15px; margin-bottom: 15px;">
+					Delete Category
+				</button>
+			</div>
+		</div>
+	</div>
+	
+<!--	category addition deletion end-->
+	
 <!--	it is needed to hold some values-->
 	<div id="tempForEdit" style="display: none"></div>
 	
@@ -299,6 +328,16 @@ session_start();
 			$('#delCard').css("display", "");
 			$('#mHeading').text("Delete Softwares").css({"border-bottom" : "double white", "border-bottom-width" : "thick"});
 			makeList();
+		}
+		
+		$('#side-menu-item-4').click(function(){
+			hideAllBodyContent();
+			showCatCard();
+		});
+
+		function showCatCard(){
+			$('#catAdd').css("display", "");
+			$('#mHeading').text("Categories").css({"border-bottom" : "double white", "border-bottom-width" : "thick"});
 		}
 		
 //		end menu button clicks
@@ -343,7 +382,7 @@ session_start();
 		function editSpinnerSelected(){
 			var selectedValue = $('#selectEditName').val();
 			var selectedCat = $('#selectEditCat').val();
-           //Ajax for calling php function
+            //Ajax for calling php function
 			$.post('f.php', { nameForEdit: selectedValue, catForEdit: selectedCat }, function(output){
                 //do after submission operation in DOM
 				$('#tempForEdit').html(output);
@@ -371,16 +410,17 @@ session_start();
 			$('#addCard').css("display", "none");
 			$('#delCard').css("display", "none");
 			$('#editCard').css("display", "none");
+			$('#catAdd').css("display", "none");
 		}
 		
 		$(document).ready(function(){
 			
 			//on error src wrong change image with 404
-			$("#imgLinkOld").on("error", function(){
+			$('#imgLinkOld').on("error", function(){
 				$(this).attr('src', 'pics/404.png');
 			});
 			
-			$("#imgLinkNew").on("error", function(){
+			$('#imgLinkNew').on("error", function(){
 				$(this).attr('src', 'pics/404.png');
 			});
 			
@@ -390,7 +430,7 @@ session_start();
 			}
 			
 			//update data to database
-			$("#btnUpdate").on("click", function(){
+			$('#btnUpdate').on("click", function(){
 				
 				var Id = $('#sIdForEdit').text();
 				var oldName = $('#sNameForEdit').text();
@@ -425,6 +465,55 @@ session_start();
 						}
 					});
 				}
+			});
+			
+			$('#btnAddCat').on("click", function(){
+				var catName = $('#newCatInput').val();
+				
+				if(catName == ""){
+				    var empty = "<b>Error!</b> Category Can't Be Empty!";
+					mAlert("alert-danger",empty);
+				 }else{
+					 //Ajax for calling php function
+					$.post('f.php', { newCatName: catName }, function(output){
+						//do after submission operation in DOM
+						switch(output){
+							case "Category Added Successfully":
+								$('#deleteCatSelecter').append("<option>"+catName+"</option>");
+								var success = "<b>Success!</b> New Category Added To Database";
+								mAlert("alert-success",success);
+								break;
+							case "Duplicate Category":
+								var dup = "<b>Warning!</b> Duplicate Category! Can't Add To Database Plz Change The Category Name!";
+								mAlert("alert-warning",dup);
+								break;
+							default:
+								var err = "<b>Error!</b> ";
+								mAlert("alert-danger",dup+output);
+								break;
+						}
+					});
+				 }
+			});
+			
+			$('#btnDeleteCat').on("click", function(){
+				var selectedOpt = $('#deleteCatSelecter').val();
+				//Ajax for calling php function
+				$.post('f.php', { delCatName: selectedOpt }, function(output){
+					//do after submission operation in DOM
+					if(output == "Category Deleted Successfully"){
+						$('#deleteCatSelecter option').each(function() {
+							if ( $(this).val() == selectedOpt ) {
+								$(this).remove();
+							}
+						});
+					    var success = "<b>Success!</b> Category Deleted Successfullay";
+						mAlert("alert-success",success);
+					}else{
+						var error = "<b>Error!</b> ";
+						mAlert("alert-danger",error+output);
+					}
+				});
 			});
 		});
 		

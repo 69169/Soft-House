@@ -401,6 +401,48 @@ function updateCardHelper($updateName,$updateDownLink,$updateImgLink,$updateCat,
 	}
 }
 
+if (isset($_POST['newCatName'])) {
+	
+	$newCatName =  $_POST["newCatName"];
+	
+	global $conn;
+  	global $t2Name;
+	global $table2Col2;
+	
+	$sql_check_duplicate = "SELECT * FROM `$t2Name` WHERE `$table2Col2` = '$newCatName'";
+	$out = $conn->query($sql_check_duplicate);
+	
+	if ($out->num_rows > 0) {
+		echo "Duplicate Category";
+	}else{
+		$sql_new_cat = "INSERT INTO `$db`.`$t2Name` (`ID`, `$table2Col2`) VALUES (NULL, '$newCatName')";
+	
+		if ($conn->query($sql_new_cat) === TRUE) {
+			echo "Category Added Successfully";
+		} else {
+			echo "Error: " . $sql_new_cat . "<br>" . $conn->error;
+		}
+	}
+}
+
+if (isset($_POST['delCatName'])) {
+	
+	$delCatName = $_POST["delCatName"];
+	
+  	global $conn;
+  	global $t2Name;
+  	global $table2Col2;
+	
+	$sql_del = "DELETE FROM `$t2Name` WHERE `$table2Col2` = '$delCatName'";
+
+	if ($conn->query($sql_del) === TRUE) {
+		echo "Category Deleted Successfully";
+	} else {
+		echo "Error deleting record: " . $conn->error;
+	}
+}
+
+
 //SELECT * FROM `download-list` WHERE `Category` = 'Player' AND `SoftName` = 'GPM'
 
 //UPDATE `download-list` SET `SoftName` = 'GPM Ply', `SoftLink` = 'http://simple.com/GPM', `SoftImgLink` = 'https://www.ginjadeals.com/wp-content/uploads/2017/12/4-month-trial-of-google-play-music-youtube-red.jpg', `Category` = 'Browser' WHERE `download-list`.`ID` = 2;
