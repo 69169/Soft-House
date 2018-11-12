@@ -362,6 +362,49 @@ function checkDupName($cName){
 	}
 }
 
+if (isset($_POST['updateCardId']) and isset($_POST['updateCardName']) and isset($_POST['updateCardCat']) and isset($_POST['updateCardImgLink']) and isset($_POST['updateCardDownLink']) and isset($_POST['oldCardName'])) {
+	$msg = "";
+	
+	$updateCardId =  $_POST["updateCardId"];
+	$updateCardName =  $_POST["updateCardName"];
+	$updateCardCat =  $_POST["updateCardCat"];
+	$updateCardImgLink =  $_POST["updateCardImgLink"];
+	$updateCardDownLink =  $_POST["updateCardDownLink"];
+	$oldCardName =  $_POST["oldCardName"];
+
+	if($oldCardName == $updateCardName){
+		//if same name then go further
+		$msg = updateCardHelper($updateCardName,$updateCardDownLink,$updateCardImgLink,$updateCardCat,$updateCardId);
+	} else if(checkDupName($updateCardName) == true){
+		//first check if it duplicate with others
+		$msg = "Duplicate Name";
+	}else{
+		//if no duplicate then go further
+	    $msg = updateCardHelper($updateCardName,$updateCardDownLink,$updateCardImgLink,$updateCardCat,$updateCardId);
+	}
+	echo $msg;
+}
+
+function updateCardHelper($updateName,$updateDownLink,$updateImgLink,$updateCat,$id){
+	
+	global $conn;
+  	global $t1Name;
+	global $table1Col2;
+	global $table1Col3;
+	global $table1Col4;
+	global $table1Col5;
+	
+	$sql_update_card = "UPDATE `$t1Name` SET `$table1Col2` = '$updateName', `$table1Col3` = '$updateDownLink', `$table1Col4` = '$updateImgLink', `$table1Col5` = '$updateCat' WHERE `$t1Name`.`ID` = $id";
+	
+	if ($conn->query($sql_update_card) === TRUE) {
+    	return "Data Updated Successfully";
+	} else {
+    	return "Error: " . $sql_update_card . "<br>" . $conn->error;
+	}
+}
+
 //SELECT * FROM `download-list` WHERE `Category` = 'Player' AND `SoftName` = 'GPM'
+
+//UPDATE `download-list` SET `SoftName` = 'GPM Ply', `SoftLink` = 'http://simple.com/GPM', `SoftImgLink` = 'https://www.ginjadeals.com/wp-content/uploads/2017/12/4-month-trial-of-google-play-music-youtube-red.jpg', `Category` = 'Browser' WHERE `download-list`.`ID` = 2;
 
 ?>

@@ -156,12 +156,12 @@ session_start();
 	
 	<style>
 		.res-t-size-heading{
-			font-size: 20px;
+			font-size: 17px;
 			color: white;
 		}
 		.subHeading{
 			text-align: center;
-			font-size: 1.5vw;
+			font-size: 2vw;
 			color: white;
 			margin-left: 2%;
 			margin-right: 2%;
@@ -169,11 +169,21 @@ session_start();
 			border-bottom : double white;
 			border-bottom-width : thick;
 		}
+		.mEditCols{
+			border: double white thick;
+			border-radius: 12px;
+			background: #36d1dc;
+			background: -webkit-linear-gradient(to bottom, #36d1dc, #5b86e5);
+			background: linear-gradient(to bottom, #36d1dc, #5b86e5);
+			padding-bottom: 20px;
+		}
 	</style>
 	
 	<div style="width: 80%; display: none;" class="container" id="editCard">
 		<div class="row" style="height: auto; padding-top: 20px; padding-bottom: 20px;" ng-app="">
-			<div class="col-sm-3 bg-danger">
+			<div class="col-lg-3 mEditCols">
+				
+				<h3 class="subHeading">Select To Edit</h3>
 				
 				<div style="margin-left: 20px; margin-right: 20px;">
 					<label for="selectEditCat" class="res-t-size-heading">Select Category</label>
@@ -191,7 +201,24 @@ session_start();
 				
 			</div>
 			
-			<div class="col-sm-3 bg-warning">
+			<div class="col-lg-3 mEditCols">		
+				
+				<h3 class="subHeading">Old Card Layout</h3>
+				<center>
+					<div class="card" style="width: 90%;">
+						<img class="card-img-top" alt="Card image" style="width:100%; max-width: 200px; max-height: 200px;" id="imgLinkOld">
+						<div class="card-body">
+							<h4 class="card-title" id="titleOld"></h4>
+							<a href="" class="btn btn-primary" id="btnDownOld">Download</a>
+						</div>
+					</div>
+				</center>
+			</div>
+			
+			<div class="col-lg-3 mEditCols">
+				
+				<h3 class="subHeading">New Card Editing</h3>
+				
 				<div style="margin-left: 20px; margin-right: 20px;">
 					<div>
 						<label for="selectNewEditCat" class="res-t-size-heading">Select New Category:</label>
@@ -214,20 +241,7 @@ session_start();
 				</div>
 			</div>
 			
-			<div class="col-sm-3 bg-danger">		
-				
-				<h3 class="subHeading">Old Card Layout</h3>
-				<center>
-					<div class="card" style="width: 90%;">
-						<img class="card-img-top" alt="Card image" style="width:100%; max-width: 200px; max-height: 200px;" id="imgLinkOld">
-						<div class="card-body">
-							<h4 class="card-title" id="titleOld"></h4>
-							<a href="" class="btn btn-primary" id="btnDownOld">Download</a>
-						</div>
-					</div>
-				</center>
-			</div>
-			<div class="col-sm-3 bg-warning">
+			<div class="col-lg-3 mEditCols">
 				
 				<h3 class="subHeading">New Card Layout</h3>
 				<center>
@@ -243,7 +257,7 @@ session_start();
 			</div>
 			
 		</div>
-		<button class="btn btn-block btn-success" style="margin-top: 10px;">Update Card</button>
+		<button id="btnUpdate" class="btn btn-block btn-warning" style="margin-top: 10px; margin-bottom: 10px;">Update Card</button>
 	</div>
 	
 <!--	edit card end-->
@@ -353,16 +367,52 @@ session_start();
             });
 		}
 		
-		
 		function hideAllBodyContent(){
 			$('#addCard').css("display", "none");
 			$('#delCard').css("display", "none");
 			$('#editCard').css("display", "none");
 		}
 		
-//		$(document).ready(function(){
-//			
-//		});
+		$(document).ready(function(){
+			
+			//on error src wrong change image with 404
+			$("#imgLinkOld").on("error", function(){
+				$(this).attr('src', 'pics/404.png');
+			});
+			
+			$("#imgLinkNew").on("error", function(){
+				$(this).attr('src', 'pics/404.png');
+			});
+			
+			function mAlert(alert_type,msg){
+				var alert = '<div class="alert '+alert_type+' alert-dismissible fade show" style="position:fixed; bottom: 1%; left: 15%; width: 70%; z-index: 99;"> <button type="button" class="close" data-dismiss="alert">X</button> '+msg+'</div>';
+				$('body').append(alert);
+			}
+			
+			//update data to database
+			$("#btnUpdate").on("click", function(){
+				
+				var Id = $('#sIdForEdit').text();
+				var oldName = $('#sNameForEdit').text();
+				var cat =  $('#selectNewEditCat').val();
+				var name = $('#selectNewSoftName').val();
+				var imgLink = $('#selectNewSoftImgLink').val();
+				var downLink = $('#selectNewSoftDownLink').val();
+				
+				if(name == "" || imgLink == "" || downLink == ""){
+				   
+					var toast = '<b>Warning!</b> Can Not Update! Plz Put Values In All Boxes';
+					mAlert("alert-warning",toast);
+					
+				}else{
+//					ajaz to post data to f.php
+					$.post('f.php', { updateCardId: Id, updateCardName: name, updateCardCat: cat, updateCardImgLink: imgLink, updateCardDownLink: downLink, oldCardName: oldName }, function(output){
+					//do after submission operation in DOM
+						alert(output);
+					});
+				}
+			});
+		});
 		
 	</script>
 	
@@ -422,7 +472,7 @@ if (isset($_GET['logout'])){
 	// destroy the session 
 	session_destroy();
 	
-	$location="http://asz-test.epizy.com/admin.php";
+	$location = "http://asz-test.epizy.com/admin.php";
 	echo '<META HTTP-EQUIV="refresh" CONTENT="0;URL='.$location.'">';
 	
 	echo('<script> 
@@ -476,7 +526,7 @@ if (isset($_POST['cDelCat']) and isset($_POST['cDelName'])) {
 
 function mAlert($alert_type,$msg){
 	$code = '
-		<div class="alert '.$alert_type.' alert-dismissible fade show" style="position:absolute; 
+		<div class="alert '.$alert_type.' alert-dismissible fade show" style="position:fixed; 
 		bottom: 1%;
 		left: 15%; 
 		width: 70%;
