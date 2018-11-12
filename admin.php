@@ -405,10 +405,24 @@ session_start();
 					mAlert("alert-warning",toast);
 					
 				}else{
-//					ajaz to post data to f.php
+//					ajax to post data to f.php
 					$.post('f.php', { updateCardId: Id, updateCardName: name, updateCardCat: cat, updateCardImgLink: imgLink, updateCardDownLink: downLink, oldCardName: oldName }, function(output){
 					//do after submission operation in DOM
-						alert(output);
+						switch(output){
+							case "Data Updated Successfully":
+								hideAllBodyContent();
+								$('#mHeading').text("").css({"border-bottom" : "", "border-bottom-width" : ""});
+								var s_toast = '<b>Success!</b> Data Updated Successfullay!';
+								mAlert("alert-success",s_toast);
+								break;
+							case "Duplicate Name":
+								var w_toast = '<b>Warning!</b> New Name ("'+name+'") is already exist is Database! Plz Change the name';
+								mAlert("alert-warning",w_toast);
+								break;
+							default :
+								mAlert("alert-danger",output);
+								break;
+						}
 					});
 				}
 			});
@@ -417,6 +431,7 @@ session_start();
 	</script>
 	
 <!--	body element end-->
+	
 </body>
 </html>
 

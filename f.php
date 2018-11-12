@@ -363,7 +363,6 @@ function checkDupName($cName){
 }
 
 if (isset($_POST['updateCardId']) and isset($_POST['updateCardName']) and isset($_POST['updateCardCat']) and isset($_POST['updateCardImgLink']) and isset($_POST['updateCardDownLink']) and isset($_POST['oldCardName'])) {
-	$msg = "";
 	
 	$updateCardId =  $_POST["updateCardId"];
 	$updateCardName =  $_POST["updateCardName"];
@@ -371,18 +370,17 @@ if (isset($_POST['updateCardId']) and isset($_POST['updateCardName']) and isset(
 	$updateCardImgLink =  $_POST["updateCardImgLink"];
 	$updateCardDownLink =  $_POST["updateCardDownLink"];
 	$oldCardName =  $_POST["oldCardName"];
-
+	
 	if($oldCardName == $updateCardName){
 		//if same name then go further
-		$msg = updateCardHelper($updateCardName,$updateCardDownLink,$updateCardImgLink,$updateCardCat,$updateCardId);
+		echo updateCardHelper($updateCardName,$updateCardDownLink,$updateCardImgLink,$updateCardCat,$updateCardId);
 	} else if(checkDupName($updateCardName) == true){
 		//first check if it duplicate with others
-		$msg = "Duplicate Name";
+		echo "Duplicate Name";
 	}else{
 		//if no duplicate then go further
-	    $msg = updateCardHelper($updateCardName,$updateCardDownLink,$updateCardImgLink,$updateCardCat,$updateCardId);
+	    echo updateCardHelper($updateCardName,$updateCardDownLink,$updateCardImgLink,$updateCardCat,$updateCardId);
 	}
-	echo $msg;
 }
 
 function updateCardHelper($updateName,$updateDownLink,$updateImgLink,$updateCat,$id){
