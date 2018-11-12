@@ -35,6 +35,7 @@ Pending Works List
 5: admin delete card layout       completed by (a)
 6: Social Bar
 7: Index
+8: about us panal                  working(s)
 </pre>
 
 slider compelte and about us working for zeeshan
