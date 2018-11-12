@@ -30,7 +30,7 @@ Pending Works List
 1: slider                         completed by shafqat
 2: about us
 3: navbar links setting
-4: navbar admin button
+4: navbar admin button             completed by ASZ
 4: admin edit card layout         currently working (a)
 5: admin delete card layout       completed by (a)
 6: Social Bar
