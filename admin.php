@@ -51,7 +51,7 @@ session_start();
 			color: white;
 			margin-left: 50px;
 			margin-right: 50px;
-			margin-top: 30px;
+/*			margin-top: 5px;*/
 		}
 	</style>
 	
