@@ -42,10 +42,9 @@ session_start();
 			background: #43cea2;  /* fallback for old browsers */
 			background: -webkit-linear-gradient(to right, #185a9d, #43cea2);
 			background: linear-gradient(to right, #185a9d, #43cea2);
-/*			background: linear-gradient(#0D4353, #03282B);*/
 			font-family: sans-serif;
 			}
-		
+
 		#mHeading{
 			text-align: center;
 			font-size: 4vw;
@@ -58,6 +57,8 @@ session_start();
 	
 </head>
 <body>
+
+	<div id="nav_bar" class="sticky-top"></div>
 	
 	<h1 id="mHeading"></h1>
 	
@@ -414,6 +415,9 @@ session_start();
 		}
 		
 		$(document).ready(function(){
+
+			$('#nav_bar').load('navbar.html');
+            $('#admin').addClass('active');
 			
 			//on error src wrong change image with 404
 			$('#imgLinkOld').on("error", function(){
