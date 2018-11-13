@@ -42,7 +42,6 @@ session_start();
 			background: #43cea2;  /* fallback for old browsers */
 			background: -webkit-linear-gradient(to right, #185a9d, #43cea2);
 			background: linear-gradient(to right, #185a9d, #43cea2);
-/*			background: linear-gradient(#0D4353, #03282B);*/
 			font-family: sans-serif;
 			}
 		
@@ -80,6 +79,7 @@ session_start();
      
 <!--	body elements start-->
 	
+<!--	side bar start-->
 	<div id="mySidenav" style="display: none">
 		<a href="#" id="side-menu-item-1">Card +</a>
 		<a href="#" id="side-menu-item-2">Edit Card !</a>
@@ -87,6 +87,7 @@ session_start();
 		<a href="#" id="side-menu-item-4">Category +</a>
 		<a href="?logout=true" id="side-menu-item-5">Logout</a>
 	</div>
+<!--	side bar end-->
 	
 <!--	add card start-->
 	
@@ -291,7 +292,7 @@ session_start();
 	
 <!--	category addition deletion end-->
 	
-<!--	it is needed to hold some values-->
+<!--	it is needed to hold some values from server side-->
 	<div id="tempForEdit" style="display: none"></div>
 	
 	<script>

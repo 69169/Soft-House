@@ -432,10 +432,13 @@ if (isset($_POST['delCatName'])) {
   	global $conn;
   	global $t2Name;
   	global $table2Col2;
+	global $t1Name;
+	global $table1Col5;
 	
 	$sql_del = "DELETE FROM `$t2Name` WHERE `$table2Col2` = '$delCatName'";
+	$sql_del_card = "DELETE FROM `$t1Name` WHERE `$table1Col5` = '$delCatName'";
 
-	if ($conn->query($sql_del) === TRUE) {
+	if (($conn->query($sql_del) === TRUE) && ($conn->query($sql_del_card) === TRUE)) {
 		echo "Category Deleted Successfully";
 	} else {
 		echo "Error deleting record: " . $conn->error;
