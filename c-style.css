@@ -46,7 +46,7 @@ html{
 	margin: 20px 0px;
 }
 .soft-font{
-	font-size: 1.7vw;
+	font-size: 20px;
 	font-family: Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";
 }
 .soft-bottom-font{
@@ -62,7 +62,7 @@ html{
 .myImg {
     border-radius: 5px;
     cursor: pointer;
-    transition: 0.3s;
+    transition: 0.6s;
 }
 
 .myImg:hover {opacity: 0.7;}
