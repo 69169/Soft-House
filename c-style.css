@@ -89,3 +89,18 @@ html{
     width: 80%;
     max-width: 700px;
 }
+/* 1st colm img*/
+
+.col-img{
+	margin-bottom: 18px;
+	min-height: 150px;
+	background-color: silver;
+	text-align: center;
+}
+.r-col-img{
+	margin-bottom: 18px;
+	min-height:310px;
+	background-color: silver;
+	text-align: center;
+	
+}
