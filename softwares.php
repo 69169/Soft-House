@@ -24,21 +24,38 @@
 				  <?php require('f.php'); selectData(); ?>
 			 </div>
 			 <div class="col-sm-3 bg-warning">
-				 
+				 <!--		  start categories menu-->
+				 <table class="table" style="margin-top: 50px">
+					 <thead>
+						 <th>Softwares Categories</th>
+					 </thead>
+				  <tbody>
+<!--					  dynamically list all categories-->
+<!--
+					<tr class="popular-download-table">
+					  <td><a href="#" class="link-no-deco">Adobe</a></td>
+					</tr>
+-->
+					<?php echoCategories(); ?>
+					  
+				  </tbody>
+				</table>
+
+				<!--		  end categories menu--> 
 			 </div>
 		 </div>
 	</div>
 	
-	<div class="footer-about"></div>
+	<div id="about_us"></div>
 	
-	<div class="myFooter"></div>
+	<div id="myFooter"></div>
 	
 	<script>
 		$(document).ready(function(){
 			$('#nav_bar').load('navbar.html');
             $('#windows').addClass('active');
-			$('.footer-about').load('about.html');
-			$('.myFooter').load('footer.html');
+			$('#about_us').load('about.html');
+			$('#myFooter').load('footer.html');
 		});
 	</script>
 	

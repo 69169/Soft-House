@@ -36,7 +36,6 @@ function insertData($softName,$softLink,$SoftImgLink,$softCategory) {
     	return "Error: " . $sql . "<br>" . $conn->error;
 	}
 
-//	$conn->close();
 }
 
 //insertData("Mozila","mozi.com","mozi.img.com","Browser");
@@ -77,7 +76,6 @@ function selectData(){
 	} else {
 		echo "No Data Found!";
 	}
-	$conn->close();
 }
 
 //selectData();
@@ -100,7 +98,7 @@ function selectDataHelper($mCategories){
       //echo "total num of rows $result->num_rows";
 		
 		//making heading of category
-		echo('<br><h1 style="width: 100%; color: #fff; border-bottom: double #fff; font-size: 45px; border-bottom-width: thick;">'.$mCategories.'</h1>');
+		echo('<br><h1 style="width: 100%; color: #fff; border-bottom: double #fff; font-size: 45px; border-bottom-width: thick;" id="'.$mCategories.'">'.$mCategories.'</h1>');
       
       	for($i = 0; $i < $result->num_rows/4; $i++){
 		  
@@ -262,6 +260,32 @@ function selectDataHelper($mCategories){
 
 	} else {
 		//echo "<br>No Data Found<br>";
+	}
+}
+
+function echoCategories(){
+	
+	global $conn;
+  	global $t2Name;
+  	global $db;
+	global $table2Col2;
+	
+	$sql_select_cat = "SELECT * FROM `$t2Name` WHERE 1";
+	$result = $conn->query($sql_select_cat);
+
+	if ($result->num_rows > 0) {
+		// output data of each row
+		while($row = $result->fetch_assoc()) {
+			$cat = $row["$table2Col2"];
+//			selectDataHelper($row["$table2Col2"]);
+			echo '<tr class="popular-download-table">
+					  <td><a href="#'.$cat.'" class="link-no-deco">'.$cat.'</a></td>
+				  </tr>';
+		}
+	} else {
+		echo '<tr class="popular-download-table">
+				  <td><a href="#" class="link-no-deco">No Category</a></td>
+			  </tr>';
 	}
 }
 
