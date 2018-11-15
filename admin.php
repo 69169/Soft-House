@@ -113,11 +113,11 @@ session_start();
 			</div>
 			<div class="form-group">
 				<label for="c-img-link" class="text-white">Card Image Link</label>
-				<input class="form-control add-card-input" id="c-img-link" type="url" placeholder="Enter Image URL" name="cImgUrl" required>
+				<input class="form-control add-card-input" id="c-img-link" type="text" placeholder="Enter Image URL" name="cImgUrl" required>
 			</div>
 			<div class="form-group">
 				<label for="download-link" class="text-white">Download Link</label>
-				<input class="form-control add-card-input" id="download-link" type="url" placeholder="Enter Download Link" name="cDownloadLink" required>
+				<input class="form-control add-card-input" id="download-link" type="text" placeholder="Enter Download Link" name="cDownloadLink" required>
 			</div>
 			<input type="submit" name="submit" value="Add Card" class="btn btn-danger btn-lg">
 		</form>
@@ -561,7 +561,6 @@ if (isset($_POST['username']) and isset($_POST['password'])) {
 		$("head").find("link#login-css").remove();
 		$("#mySidenav").css("display", "");
 		</script>');
-			
 		$_SESSION["isLogin"] = true;
 
 
@@ -580,7 +579,7 @@ if (isset($_GET['logout'])){
 	// destroy the session 
 	session_destroy();
 	
-	$location = "http://asz-test.epizy.com/admin.php";
+	$location = "http://asz-softwares.epizy.com/admin.php";
 	echo '<META HTTP-EQUIV="refresh" CONTENT="0;URL='.$location.'">';
 	
 	echo('<script> 
@@ -598,7 +597,7 @@ if (isset($_POST['cCat']) and isset($_POST['cName']) and isset($_POST['cImgUrl']
 	$cName =  $_POST["cName"];
 	$cImgUrl =  $_POST["cImgUrl"];
 	$cDownloadLink =  $_POST["cDownloadLink"];
-	
+
 	if (checkDupName("$cName") == true) {
 		
 		$toast = '<strong>Error!</strong> '.$cName.' is Already Available in Database! Plz Select a Unique Name. <a href="#" onClick="showAddCard();" class="alert-link">Try Again...</a>';
