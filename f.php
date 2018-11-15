@@ -1,6 +1,6 @@
 <?php
 
-require('connect-wamp.php');
+require('connect.php');
 $t1Name = "download-list";
 $table1Col2 = "SoftName";
 $table1Col3 = "SoftLink";
@@ -155,7 +155,6 @@ function selectDataHelper($mCategories){
 					<img class="card-img-top" src="'.$s_img_link_1.'" alt="Card image" style="width:100%">
 					<div class="card-body">
 						  <h4 class="card-title" style="white-space: nowrap;">'.$s_Name_1.'</h4>
-						  <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
 						  <a href="'.$s_link_1.'" class="btn btn-primary">Download</a>
 					</div>
   				</div>
@@ -164,7 +163,6 @@ function selectDataHelper($mCategories){
 					<img class="card-img-top" src="'.$s_img_link_2.'" alt="Card image" style="width:100%">
 					<div class="card-body">
 						  <h4 class="card-title" style="white-space: nowrap;">'.$s_Name_2.'</h4>
-						  <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
 						  <a href="'.$s_link_2.'" class="btn btn-primary">Download</a>
 					</div>
   				</div>
@@ -186,7 +184,6 @@ function selectDataHelper($mCategories){
 					<img class="card-img-top" src="'.$s_img_link_1.'" alt="Card image" style="width:100%">
 					<div class="card-body">
 						  <h4 class="card-title" style="white-space: nowrap;">'.$s_Name_1.'</h4>
-						  <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
 						  <a href="'.$s_link_1.'" class="btn btn-primary">Download</a>
 					</div>
   				</div>
@@ -195,7 +192,6 @@ function selectDataHelper($mCategories){
 					<img class="card-img-top" src="'.$s_img_link_2.'" alt="Card image" style="width:100%">
 					<div class="card-body">
 						  <h4 class="card-title" style="white-space: nowrap;">'.$s_Name_2.'</h4>
-						  <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
 						  <a href="'.$s_link_2.'" class="btn btn-primary">Download</a>
 					</div>
   				</div>
@@ -204,7 +200,6 @@ function selectDataHelper($mCategories){
 					<img class="card-img-top" src="'.$s_img_link_3.'" alt="Card image" style="width:100%">
 					<div class="card-body">
 						  <h4 class="card-title" style="white-space: nowrap;">'.$s_Name_3.'</h4>
-						  <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
 						  <a href="'.$s_link_3.'" class="btn btn-primary">Download</a>
 					</div>
   				</div>
@@ -221,7 +216,6 @@ function selectDataHelper($mCategories){
 					<img class="card-img-top" src="'.$s_img_link_1.'" alt="Card image" style="width:100%">
 					<div class="card-body">
 						  <h4 class="card-title" style="white-space: nowrap;">'.$s_Name_1.'</h4>
-						  <p class="card-text">Some example text</p>
 						  <a href="'.$s_link_1.'" class="btn btn-primary">Download</a>
 					</div>
   				</div>
@@ -230,7 +224,6 @@ function selectDataHelper($mCategories){
 					<img class="card-img-top" src="'.$s_img_link_2.'" alt="Card image" style="width:100%">
 					<div class="card-body">
 						  <h4 class="card-title" style="white-space: nowrap;">'.$s_Name_2.'</h4>
-						  <p class="card-text">Some example text</p>
 						  <a href="'.$s_link_2.'" class="btn btn-primary">Download</a>
 					</div>
   				</div>
@@ -239,7 +232,6 @@ function selectDataHelper($mCategories){
 					<img class="card-img-top" src="'.$s_img_link_3.'" alt="Card image" style="width:100%">
 					<div class="card-body">
 						  <h4 class="card-title" style="white-space: nowrap;">'.$s_Name_3.'</h4>
-						  <p class="card-text">Some example text</p>
 						  <a href="'.$s_link_3.'" class="btn btn-primary">Download</a>
 					</div>
   				</div>
@@ -248,7 +240,6 @@ function selectDataHelper($mCategories){
 					<img class="card-img-top" src="'.$s_img_link_4.'" alt="Card image" style="width:100%">
 					<div class="card-body">
 						  <h4 class="card-title" style="white-space: nowrap;">'.$s_Name_4.'</h4>
-						  <p class="card-text">Some example text</p>
 						  <a href="'.$s_link_4.'" class="btn btn-primary">Download</a>
 					</div>
   				</div>

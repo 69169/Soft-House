@@ -27,8 +27,6 @@ session_start();
 	<!-- Latest compiled JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 	
-	<script src="javascript.js"></script>
-	
 <!--	bootstrap link end-->
 	
 <!--	end linking scripts-->
