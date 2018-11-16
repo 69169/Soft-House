@@ -28,14 +28,14 @@ Pending Works List
 
 <pre>
 1: slider                         completed by shafqat
-2: about us
-3: navbar links setting
+2: about us                         completed by a
+3: navbar links setting             completed by a
 4: navbar admin button             completed by ASZ
 4: admin edit card layout         completed by (a)
 5: admin delete card layout       completed by (a)
 6: Social Bar
-7: Index
-8: about us panel                  working(s)
+7: Index                          completed by as
+8: about us panel                  completed by a
 </pre>
 
 slider compelte and about us working for zeeshan
